@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>  
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/orderLineLayout"
     android:layout_width="fill_parent"
@@ -6,51 +6,45 @@
     android:orientation="vertical"
     android:paddingBottom="3dip"
     android:paddingLeft="10dip" >
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" >
-
+
         <TextView
-            android:id="@+id/itemNameTextView"
+            android:id="@+id/moneyTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="2"
-            android:gravity="left"
-            android:textColor="@drawable/blue" />
-
+            android:gravity="left" />
     </LinearLayout>
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" >
-
+
         <TextView
-            android:id="@+id/skuCdTextView"
+            android:id="@+id/priceTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="left"
-            android:textColor="@drawable/blue" />
-
+            android:gravity="left" />
+
         <TextView
-            android:id="@+id/itemCdTextView"
+            android:id="@+id/subTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="left"
-            android:textColor="@drawable/blue" />
-
+            android:gravity="left" />
+
         <TextView
             android:id="@+id/qtyTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@drawable/blue" />
-
+            android:gravity="right" />
     </LinearLayout>
-  
-</LinearLayout> 
+
+</LinearLayout>

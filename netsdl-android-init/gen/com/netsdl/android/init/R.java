@@ -11,24 +11,28 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int black=0x7f020007;
-        public static final int blue=0x7f020009;
-        public static final int crimson=0x7f020011;
-        public static final int dark_slate_blue=0x7f020010;
-        public static final int darkgray=0x7f020005;
-        public static final int deep_green=0x7f02000e;
-        public static final int deep_yellow=0x7f02000b;
-        public static final int ic_action_search=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int logo=0x7f020002;
-        public static final int maroon=0x7f02000f;
-        public static final int radialback=0x7f020003;
-        public static final int red=0x7f020008;
-        public static final int sky_sea=0x7f020004;
-        public static final int tollbar_text_color=0x7f02000d;
-        public static final int weak_yellow=0x7f02000c;
-        public static final int white=0x7f020006;
-        public static final int yellow=0x7f02000a;
+        public static final int bg=0x7f020000;
+        public static final int black=0x7f02000a;
+        public static final int black_image=0x7f020001;
+        public static final int blue=0x7f02000c;
+        public static final int crimson=0x7f020014;
+        public static final int custom_button=0x7f020002;
+        public static final int dark_slate_blue=0x7f020013;
+        public static final int darkgray=0x7f020008;
+        public static final int deep_green=0x7f020011;
+        public static final int deep_yellow=0x7f02000e;
+        public static final int ic_action_search=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int light_gray=0x7f020015;
+        public static final int logo=0x7f020005;
+        public static final int maroon=0x7f020012;
+        public static final int radialback=0x7f020006;
+        public static final int red=0x7f02000b;
+        public static final int sky_sea=0x7f020007;
+        public static final int tollbar_text_color=0x7f020010;
+        public static final int weak_yellow=0x7f02000f;
+        public static final int white=0x7f020009;
+        public static final int yellow=0x7f02000d;
     }
     public static final class id {
         public static final int CommodityDataHostVersion=0x7f070008;
@@ -76,8 +80,8 @@ public final class R {
         public static final int Close=0x7f04001c;
         public static final int CommodityData=0x7f04001f;
         public static final int Confirm=0x7f04002f;
-        public static final int DeleteData=0x7f040038;
-        public static final int DeviceData=0x7f04003a;
+        public static final int DeleteData=0x7f040039;
+        public static final int DeviceData=0x7f04003b;
         public static final int ForceUpdate=0x7f040027;
         public static final int GotoSystem=0x7f04001d;
         public static final int HostVersion=0x7f040024;
@@ -92,24 +96,25 @@ public final class R {
         public static final int Return=0x7f04001b;
         public static final int StoreData=0x7f040020;
         public static final int Total=0x7f040014;
-        public static final int UploadData=0x7f040039;
-        public static final int ViewConfig=0x7f04003b;
+        public static final int UploadData=0x7f04003a;
+        public static final int ViewConfig=0x7f04003c;
         public static final int app_name=0x7f040001;
         public static final int back=0x7f040010;
         public static final int blank=0x7f040002;
         public static final int clear=0x7f040011;
-        public static final int configUrlNoFind=0x7f04003d;
-        public static final int custData=0x7f040041;
+        public static final int configUrlNoFind=0x7f04003e;
+        public static final int custData=0x7f040042;
         public static final int distinguish=0x7f040022;
-        public static final int endDayMessage1=0x7f04003f;
-        public static final int endDayMessage2=0x7f040040;
+        public static final int endDayMessage1=0x7f040040;
+        public static final int endDayMessage2=0x7f040041;
         public static final int function1=0x7f040035;
         public static final int function2=0x7f040036;
         public static final int hello=0x7f040000;
-        public static final int init=0x7f040043;
+        public static final int init=0x7f040044;
+        public static final int init_name=0x7f040037;
         public static final int item_change=0x7f040034;
         public static final int lumpSum=0x7f040017;
-        public static final int menu_settings=0x7f040037;
+        public static final int menu_settings=0x7f040038;
         public static final int msg_id_must_be_number=0x7f04002b;
         public static final int msg_no_id=0x7f04002a;
         public static final int msg_no_sku=0x7f04002d;
@@ -128,16 +133,31 @@ public final class R {
         public static final int password=0x7f040005;
         public static final int returnn=0x7f040012;
         public static final int s_view_btn=0x7f04002e;
-        public static final int sale=0x7f040042;
-        public static final int saleDate=0x7f04003c;
+        public static final int sale=0x7f040043;
+        public static final int saleDate=0x7f04003d;
         public static final int type1=0x7f040030;
         public static final int type2=0x7f040031;
         public static final int type3=0x7f040032;
         public static final int type4=0x7f040033;
-        public static final int updateError=0x7f04003e;
+        public static final int updateError=0x7f04003f;
         public static final int username=0x7f040004;
     }
     public static final class style {
-        public static final int AppTheme=0x7f050000;
+        /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+         */
+        public static final int AppBaseTheme=0x7f050000;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f050001;
+        public static final int Button=0x7f050002;
     }
 }

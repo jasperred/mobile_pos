@@ -83,7 +83,7 @@ public class Main {
 
 		editSearch = (EditText) view.findViewById(R.id.editSearch);
 
-		buttonPay = (Button) view.findViewById(R.id.buttonPay);
+		buttonPay = (Button) view.findViewById(R.id.buttonPoint);
 		buttonConfirm = (Button) view.findViewById(R.id.buttonConfirm);
 		buttonReturn = (Button) view.findViewById(R.id.buttonReturn);
 
@@ -807,7 +807,7 @@ public class Main {
 	}
 
 	public void setTotal() {
-		((TextView) parent.findViewById(R.id.all_item_fee))
+		((TextView) parent.findViewById(R.id.amtTextView))
 				.setText(getTotalItemStdPrice().toString());
 
 		((TextView) parent.findViewById(R.id.all_pay_fee))

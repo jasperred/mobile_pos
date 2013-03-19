@@ -84,7 +84,7 @@ public class Login {
 		coreLayout.removeAllViews();
 		coreLayout.addView(linearLayoutLogin);
 
-		final EditText editText = (EditText) parent.findViewById(R.id.editText);
+		final EditText editText = (EditText) parent.findViewById(R.id.userNameEditText);
 
 		editText.setText(data.text);
 

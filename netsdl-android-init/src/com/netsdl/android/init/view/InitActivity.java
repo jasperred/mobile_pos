@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.netsdl.android.common.view.dialog.Dialogable;
+import com.netsdl.android.init.R;
 import com.netsdl.android.init.data.Data;
 
 import android.app.Activity;
@@ -27,6 +28,7 @@ public class InitActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTitle(R.string.init_name);
 		init = new Init(this);
 		init.init();
 	}

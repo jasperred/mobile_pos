@@ -45,6 +45,7 @@ import com.netsdl.android.common.db.PosTable;
 import com.netsdl.android.common.db.SkuMaster;
 import com.netsdl.android.common.db.StoreMaster;
 import com.netsdl.android.main.R;
+import com.netsdl.android.main.view.FunctionActivity;
 import com.netsdl.android.main.view.MainActivity;
 
 /**
@@ -196,22 +197,22 @@ public class ReturnToWhActivity extends Activity {
 			lin2.setOrientation(LinearLayout.HORIZONTAL);//others
 			TextView skuTextView = new TextView(this);
 			skuTextView.setGravity(Gravity.LEFT);
-			skuTextView.setTextColor(Color.WHITE);
+			//skuTextView.setTextColor(Color.WHITE);
 			//skuTextView.setTextSize(30);
 			skuTextView.setText("SKU编码");
 			TextView itemTextView = new TextView(this);
 			itemTextView.setGravity(Gravity.LEFT);
-			itemTextView.setTextColor(Color.WHITE);
+			//itemTextView.setTextColor(Color.WHITE);
 			//itemTextView.setTextSize(30);
 			itemTextView.setText("商品编码");
 			TextView titleTextView = new TextView(this);
 			titleTextView.setGravity(Gravity.LEFT);
-			titleTextView.setTextColor(Color.WHITE);
+			//titleTextView.setTextColor(Color.WHITE);
 			//titleTextView.setTextSize(30);
 			titleTextView.setText("商品名称");
 			TextView qtyTextView = new TextView(this);
 			qtyTextView.setGravity(Gravity.RIGHT);
-			qtyTextView.setTextColor(Color.WHITE);
+			//qtyTextView.setTextColor(Color.WHITE);
 			//qtyTextView.setTextSize(30);
 			qtyTextView.setText("数量");
 			lin1.addView(titleTextView, 0, new LinearLayout.LayoutParams(
@@ -239,8 +240,8 @@ public class ReturnToWhActivity extends Activity {
 				detailView.getContext(), new ArrayList(), R.layout.view_detail,
 				new String[] { SkuMaster.COLUMN_SKU_CD,
 						SkuMaster.COLUMN_ITEM_CD, SkuMaster.COLUMN_ITEM_NAME,
-						"qty" }, new int[] { R.id.skuCdTextView,
-						R.id.itemCdTextView, R.id.itemNameTextView,
+						"qty" }, new int[] { R.id.priceTextView,
+						R.id.subTextView, R.id.moneyTextView,
 						R.id.qtyTextView });
 		detailView.setAdapter(listItemAdapter);
 		if (barcodeMap == null)
@@ -334,7 +335,7 @@ public class ReturnToWhActivity extends Activity {
 	private void backToFunction() {
 		Intent gotoIntent = new Intent(
 				ReturnToWhActivity.this,
-				MainActivity.class);
+				FunctionActivity.class);
 		Bundle bundle = new Bundle();
 		// 临时方法，IS_LOGIN为true表示已经是登录状态，在MainActivity的onCreate处理中直接进到function界面
 		bundle.putBoolean(Constant.IS_LOGIN, true);
@@ -537,7 +538,7 @@ public class ReturnToWhActivity extends Activity {
 					new String[] {SkuMaster.COLUMN_ITEM_NAME,  SkuMaster.COLUMN_SKU_CD,
 							SkuMaster.COLUMN_ITEM_CD,
 							"qty" }, new int[] {
-						R.id.itemNameTextView, R.id.skuCdTextView, R.id.itemCdTextView,
+						R.id.moneyTextView, R.id.priceTextView, R.id.subTextView,
 							R.id.qtyTextView });
 			detailView.setAdapter(listItemAdapter);
 			countSubTotal(1);
@@ -575,8 +576,8 @@ public class ReturnToWhActivity extends Activity {
 				new String[] { SkuMaster.COLUMN_SKU_CD,
 						SkuMaster.COLUMN_ITEM_CD,
 						SkuMaster.COLUMN_ITEM_NAME, "qty" }, new int[] {
-						R.id.skuCdTextView, R.id.itemCdTextView,
-						R.id.itemNameTextView, R.id.qtyTextView });
+						R.id.priceTextView, R.id.subTextView,
+						R.id.moneyTextView, R.id.qtyTextView });
 		detailView.setAdapter(listItemAdapter);
 
 		//默认日期

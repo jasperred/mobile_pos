@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/black"
     android:orientation="vertical" >
-
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="fill_parent"
@@ -14,12 +14,12 @@
         android:text="@string/returnToWh"
         android:textColor="@drawable/white"
         android:textSize="30dp" />
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
-
+
         <TextView
             android:id="@+id/barcodeScanTextView"
             android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:text="@string/scan"
             android:textColor="@drawable/white"
             android:textSize="30dp" />
-
+
         <EditText
             android:id="@+id/barcodeScanEditText"
             android:layout_width="wrap_content"
@@ -40,14 +40,13 @@
 
             <requestFocus />
         </EditText>
-
     </LinearLayout>
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="7" >
-
+
         <ListView
             android:id="@+id/detailListView"
             android:layout_width="fill_parent"
@@ -55,16 +54,14 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@drawable/white" >
-
         </ListView>
-
     </LinearLayout>
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
-
+
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
@@ -73,7 +70,7 @@
             android:text="@string/Return"
             android:textColor="@drawable/black"
             android:textSize="30dp" />
-
+
         <Button
             android:id="@+id/confirmButton"
             android:layout_width="wrap_content"
@@ -82,7 +79,6 @@
             android:text="@string/Confirm"
             android:textColor="@drawable/black"
             android:textSize="30dp" />
-
     </LinearLayout>
 
 </LinearLayout>

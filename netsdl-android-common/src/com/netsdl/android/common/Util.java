@@ -368,6 +368,10 @@ public class Util {
 		if (num == null)
 			return new BigDecimal(0);
 		BigDecimal a = num.setScale(digit, BigDecimal.ROUND_HALF_UP);
+		if(a.intValue()==a.doubleValue())
+		{
+			a = new BigDecimal(a.intValue());
+		}
 		return a;
 	}
 	/**

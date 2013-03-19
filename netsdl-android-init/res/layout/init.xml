@@ -3,18 +3,18 @@
     android:id="@+id/init"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/sky_sea"
+    android:background="@drawable/bg"
     android:orientation="vertical" >
-
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="70dp"
         android:orientation="horizontal" >
-
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
-
+
             <Button
                 android:id="@+id/buttonCheckDB"
                 android:layout_width="fill_parent"
@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -45,29 +45,25 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="2"
-                    android:orientation="horizontal" >
-
+                    android:layout_weight="2" >
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/distinguish"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/distinguish"/>
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/LocalVersion"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/LocalVersion"/>
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/HostVersion"
-                        android:textColor="@drawable/white" />
+                        android:text="@string/HostVersion"/>
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -87,28 +83,25 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal" >
-
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/CommodityData"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/CommodityData" />
+
                     <TextView
                         android:id="@+id/CommodityDataLocalVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
+
                     <TextView
                         android:id="@+id/CommodityDataHostVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
+
                     <Button
                         android:id="@+id/buttonUpdateCommodity"
                         android:layout_width="fill_parent"
@@ -116,9 +109,7 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:text="@string/CanUpdate"
-                        android:textColor="@drawable/black"
                         android:textSize="10dp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -126,27 +117,24 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal" >
-
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/StoreData"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/StoreData"/>
+
                     <TextView
                         android:id="@+id/StoreDataLocalVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
+
                     <TextView
                         android:id="@+id/StoreDataHostVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
+                        android:layout_weight="1"/>
 
                     <Button
                         android:id="@+id/buttonUpdateStore"
@@ -155,7 +143,6 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:text="@string/CanUpdate"
-                        android:textColor="@drawable/black"
                         android:textSize="10dp" />
                 </LinearLayout>
 
@@ -164,27 +151,24 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal" >
-
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/PaymentData"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/PaymentData"/>
+
                     <TextView
                         android:id="@+id/PaymentDataLocalVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
+
                     <TextView
                         android:id="@+id/PaymentDataHostVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
+                        android:layout_weight="1"/>
 
                     <Button
                         android:id="@+id/buttonUpdatePayment"
@@ -193,7 +177,6 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:text="@string/CanUpdate"
-                        android:textColor="@drawable/black"
                         android:textSize="10dp" />
                 </LinearLayout>
 
@@ -202,28 +185,25 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal" >
-
+
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/custData"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/custData"/>
+
                     <TextView
                         android:id="@+id/CustDataLocalVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
+
                     <TextView
                         android:id="@+id/CustDataHostVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
+
                     <Button
                         android:id="@+id/buttonUpdateCust"
                         android:layout_width="fill_parent"
@@ -231,9 +211,7 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:text="@string/CanUpdate"
-                        android:textColor="@drawable/black"
                         android:textSize="10dp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -242,29 +220,23 @@
                     android:layout_weight="1"
                     android:orientation="horizontal" >
 
-
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:text="@string/DeviceData"
-                        android:textColor="@drawable/white" />
-
+                        android:text="@string/DeviceData"/>
 
                     <TextView
                         android:id="@+id/DeviceDataLocalVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
-
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/DeviceDataHostVersion"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:textColor="@drawable/white" />
+                        android:layout_weight="1"/>
 
                     <Button
                         android:id="@+id/buttonUpdateDevice"
@@ -273,91 +245,78 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:text="@string/CanUpdate"
-                        android:textColor="@drawable/black"
                         android:textSize="10dp" />
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3"
-        android:orientation="horizontal" >
+        android:layout_height="140dp"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal" >
-
-                <LinearLayout
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/buttonViewConfig"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1" >
-
-                    <Button
-                        android:id="@+id/buttonViewConfig"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:enabled="false"
-                        android:text="@string/ViewConfig" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
-
-                    <Button
-                        android:id="@+id/buttonSaleDate"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="@string/saleDate" />
-
-                </LinearLayout>
-
+                    android:enabled="false"
+                    android:text="@string/ViewConfig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:layout_weight="1" >
 
-                <LinearLayout
+                <Button
+                    android:id="@+id/buttonSaleDate"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1" >
+                    android:text="@string/saleDate" />
+            </LinearLayout>
+        </LinearLayout>
 
-                    <Button
-                        android:id="@+id/buttonDeleteData"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:enabled="false"
-                        android:text="@string/DeleteData" />
-                </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/buttonDeleteData"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1" >
+                    android:enabled="false"
+                    android:text="@string/DeleteData" />
+            </LinearLayout>
 
-                    <Button
-                        android:id="@+id/buttonUploadData"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="@string/UploadData" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/buttonUploadData"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/UploadData" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

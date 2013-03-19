@@ -2,7 +2,6 @@ package com.netsdl.android.init.view;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -34,6 +33,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnDismissListener;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -88,6 +89,18 @@ public class Init {
 	public Map<String, String> infoPayment;
 	public Map<String, String> infoDevice;
 	public Map<String, String> infoCust;
+	private Handler handler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				showRemoteVersionInfo();
+				break;
+			case 1:
+				break;
+			}
+		};
+	};
 
 	public Init(InitActivity parent) {
 		this.parent = parent;
@@ -247,7 +260,7 @@ public class Init {
 					DeviceMaster.COLUMN_FIELD_16, DeviceMaster.COLUMNS)
 					.toString();
 			// 将filepath下全部文件上传
-			String spath = filepath+File.separatorChar+"sale";
+			String spath = filepath + File.separatorChar + "sale";
 			File[] saleUploadFiles = new File(spath).listFiles();
 			if (saleUploadFiles != null) {
 				for (File uf : saleUploadFiles) {
@@ -263,7 +276,7 @@ public class Init {
 					}
 				}
 			}
-			String rpath = filepath+File.separatorChar+"return";
+			String rpath = filepath + File.separatorChar + "return";
 			File[] returnUploadFiles = new File(rpath).listFiles();
 			if (returnUploadFiles != null) {
 				for (File uf : returnUploadFiles) {
@@ -279,7 +292,7 @@ public class Init {
 					}
 				}
 			}
-			String tpath = filepath+File.separatorChar+"transfer";
+			String tpath = filepath + File.separatorChar + "transfer";
 			File[] transferUploadFiles = new File(tpath).listFiles();
 			if (transferUploadFiles != null) {
 				for (File uf : transferUploadFiles) {
@@ -363,7 +376,7 @@ public class Init {
 			if (whNo == null)
 				whNo = "";
 			String path = filepath + File.separatorChar + "sale";
-			String filename = whNo + "-sale-" +  timestamp+ "." +localDeviceId ;
+			String filename = whNo + "-sale-" + timestamp + "." + localDeviceId;
 			outputFile(path, saleList, filename);
 		}
 		// 退货到仓库的数据文件
@@ -375,7 +388,8 @@ public class Init {
 			if (whNo == null)
 				whNo = "";
 			String path = filepath + File.separatorChar + "return";
-			String filename = whNo + "-return-" + timestamp + "." + localDeviceId;
+			String filename = whNo + "-return-" + timestamp + "."
+					+ localDeviceId;
 			outputFile(path, returnList, filename);
 		}
 		// 店铺移动的数据文件
@@ -383,11 +397,13 @@ public class Init {
 		if (transferList != null) {
 
 			// 店铺号用第一条记录的店铺号
-			String whNo = (String) transferList.get(0).get(PosTable.COLUMN_WH_NO);
+			String whNo = (String) transferList.get(0).get(
+					PosTable.COLUMN_WH_NO);
 			if (whNo == null)
 				whNo = "";
 			String path = filepath + File.separatorChar + "transfer";
-			String filename = whNo + "-transfer-" +  timestamp+ "." + localDeviceId;
+			String filename = whNo + "-transfer-" + timestamp + "."
+					+ localDeviceId;
 			outputFile(path, transferList, filename);
 		}
 		// 盘点的数据文件
@@ -399,16 +415,16 @@ public class Init {
 				new String[] { PosTable.COLUMN_END_DAY });
 	}
 
-	//输出文件
+	// 输出文件
 	private void outputFile(String filepath, List<Map> dataList, String filename)
 			throws FileNotFoundException, UnsupportedEncodingException {
 		File path = new File(filepath);
-		if(!path.exists())
+		if (!path.exists())
 			path.mkdirs();
 		PrintStream output = null;
 		try {
-			output = new PrintStream(filepath + File.separatorChar
-					+ filename, Constant.UTF_8);
+			output = new PrintStream(filepath + File.separatorChar + filename,
+					Constant.UTF_8);
 			String[] columns = PosTable.COLUMNS;
 			for (Map d : dataList) {
 				for (int j = 0; j < columns.length; j++) {
@@ -426,8 +442,8 @@ public class Init {
 				output.println();
 				output.flush();
 			}
-		} finally{
-			if(output!=null)
+		} finally {
+			if (output != null)
 				output.close();
 		}
 	}
@@ -483,18 +499,19 @@ public class Init {
 			// 按日期和数量比较，大于bd的删除
 			Map<String, String> fm = new HashMap();
 			for (File f : fl) {
-				//得到文件的日期
+				// 得到文件的日期
 				String sn = null;
 				try {
-					sn = f.getName().substring(f.getName().lastIndexOf(".")+1 ,
-							f.getName().lastIndexOf(".") -1);
+					sn = f.getName().substring(
+							f.getName().lastIndexOf(".") + 1,
+							f.getName().lastIndexOf(".") - 1);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(sn==null||sn.length()<8)
+				if (sn == null || sn.length() < 8)
 					continue;
-				String d = sn.substring(0,8);
+				String d = sn.substring(0, 8);
 				if (fm.get(d) != null)
 					continue;
 				else {
@@ -648,7 +665,19 @@ public class Init {
 		((Button) parent.findViewById(R.id.buttonCheckDB))
 				.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						checkUpdate2();
+						try {
+							new Thread(new Runnable() {
+
+								public void run() {
+
+									checkUpdate2();
+									handler.sendEmptyMessage(0);
+								}
+							}).start();
+						} catch (RuntimeException e) {
+							Toast.makeText(parent, e.getMessage(),
+									Toast.LENGTH_SHORT).show();
+						}
 					}
 				});
 	}
@@ -656,6 +685,7 @@ public class Init {
 	private void checkUpdate2() {
 		try {
 			clearUpdateInfo();
+			setVersion();
 			// String strLocalMacAddress =
 			// Util.getLocalMacAddress(parent);
 			// Log.d("LocalMacAddress",strLocalMacAddress);
@@ -665,58 +695,19 @@ public class Init {
 
 			initInfo = Util.getInitInfo();
 
-			if(initInfo.get(Init.KEY_SKU)!=null)
-			infoSku = Util.getInfo(initInfo.get(Init.KEY_SKU));
+			if (initInfo.get(Init.KEY_SKU) != null)
+				infoSku = Util.getInfo(initInfo.get(Init.KEY_SKU));
 
-			if(initInfo.get(Init.STORE)!=null)
-			infoStore = Util.getInfo(initInfo.get(Init.STORE));
+			if (initInfo.get(Init.STORE) != null)
+				infoStore = Util.getInfo(initInfo.get(Init.STORE));
 
-			if(initInfo.get(Init.PAYMENT)!=null)
-			infoPayment = Util.getInfo(initInfo.get(Init.PAYMENT));
+			if (initInfo.get(Init.PAYMENT) != null)
+				infoPayment = Util.getInfo(initInfo.get(Init.PAYMENT));
 
-			if(initInfo.get(Init.DEVICE)!=null)
-			infoDevice = Util.getInfo(initInfo.get(Init.DEVICE));
-			if(initInfo.get(Init.CUST)!=null)
-			infoCust = Util.getInfo(initInfo.get(Init.CUST));
-
-			if(infoSku!=null)
-			{
-			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
-					.setText(infoSku.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateCommodity))
-					.setEnabled(true);
-			}
-
-			if(infoStore!=null)
-			{
-			((TextView) parent.findViewById(R.id.StoreDataHostVersion))
-					.setText(infoStore.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateStore))
-					.setEnabled(true);
-			}
-
-			if(infoPayment!=null)
-			{
-			((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
-					.setText(infoPayment.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdatePayment))
-					.setEnabled(true);
-			}
-
-			if(infoDevice!=null)
-			{
-			((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
-					.setText(infoDevice.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateDevice))
-					.setEnabled(true);
-			}
-			if(infoCust!=null)
-			{
-			((TextView) parent.findViewById(R.id.CustDataHostVersion))
-			.setText(infoCust.get(Constant.VERSION));
-		((Button) parent.findViewById(R.id.buttonUpdateCust))
-				.setEnabled(true);
-			}
+			if (initInfo.get(Init.DEVICE) != null)
+				infoDevice = Util.getInfo(initInfo.get(Init.DEVICE));
+			if (initInfo.get(Init.CUST) != null)
+				infoCust = Util.getInfo(initInfo.get(Init.CUST));
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -724,6 +715,67 @@ public class Init {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	private void showRemoteVersionInfo() {
+		if (infoSku.get(Constant.VERSION) == null) {
+			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
+					.setText(R.string.updateError);
+			((Button) parent.findViewById(R.id.buttonUpdateCommodity))
+					.setEnabled(false);
+		} else {
+			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
+					.setText(infoSku.get(Constant.VERSION));
+			((Button) parent.findViewById(R.id.buttonUpdateCommodity))
+					.setEnabled(true);
+		}
+
+		if (infoStore.get(Constant.VERSION) == null) {
+			((TextView) parent.findViewById(R.id.StoreDataHostVersion))
+					.setText(R.string.updateError);
+			((Button) parent.findViewById(R.id.buttonUpdateStore))
+					.setEnabled(false);
+		} else {
+			((TextView) parent.findViewById(R.id.StoreDataHostVersion))
+					.setText(infoStore.get(Constant.VERSION));
+			((Button) parent.findViewById(R.id.buttonUpdateStore))
+					.setEnabled(true);
+		}
+
+		if (infoPayment.get(Constant.VERSION) == null) {
+			((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
+					.setText(R.string.updateError);
+			((Button) parent.findViewById(R.id.buttonUpdatePayment))
+					.setEnabled(false);
+		} else {
+			((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
+					.setText(infoPayment.get(Constant.VERSION));
+			((Button) parent.findViewById(R.id.buttonUpdatePayment))
+					.setEnabled(true);
+		}
+
+		if (infoDevice.get(Constant.VERSION) == null) {
+			((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
+					.setText(R.string.updateError);
+			((Button) parent.findViewById(R.id.buttonUpdateDevice))
+					.setEnabled(false);
+		} else {
+			((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
+					.setText(infoDevice.get(Constant.VERSION));
+			((Button) parent.findViewById(R.id.buttonUpdateDevice))
+					.setEnabled(true);
+		}
+		if (infoCust.get(Constant.VERSION) == null) {
+			((TextView) parent.findViewById(R.id.CustDataHostVersion))
+					.setText(R.string.updateError);
+			((Button) parent.findViewById(R.id.buttonUpdateCust))
+					.setEnabled(false);
+		} else {
+			((TextView) parent.findViewById(R.id.CustDataHostVersion))
+					.setText(infoDevice.get(Constant.VERSION));
+			((Button) parent.findViewById(R.id.buttonUpdateCust))
+					.setEnabled(true);
 		}
 	}
 
@@ -787,64 +839,7 @@ public class Init {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (infoSku.get(Constant.VERSION) == null) {
-			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
-					.setText(R.string.updateError);
-			((Button) parent.findViewById(R.id.buttonUpdateCommodity))
-					.setEnabled(false);
-		} else {
-			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
-					.setText(infoSku.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateCommodity))
-					.setEnabled(true);
-		}
 
-		if (infoStore.get(Constant.VERSION) == null) {
-			((TextView) parent.findViewById(R.id.StoreDataHostVersion))
-					.setText(R.string.updateError);
-			((Button) parent.findViewById(R.id.buttonUpdateStore))
-					.setEnabled(false);
-		} else {
-			((TextView) parent.findViewById(R.id.StoreDataHostVersion))
-					.setText(infoStore.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateStore))
-					.setEnabled(true);
-		}
-
-		if (infoPayment.get(Constant.VERSION) == null) {
-			((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
-					.setText(R.string.updateError);
-			((Button) parent.findViewById(R.id.buttonUpdatePayment))
-					.setEnabled(false);
-		} else {
-			((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
-					.setText(infoPayment.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdatePayment))
-					.setEnabled(true);
-		}
-
-		if (infoDevice.get(Constant.VERSION) == null) {
-			((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
-					.setText(R.string.updateError);
-			((Button) parent.findViewById(R.id.buttonUpdateDevice))
-					.setEnabled(false);
-		} else {
-			((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
-					.setText(infoDevice.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateDevice))
-					.setEnabled(true);
-		}
-		if (infoCust.get(Constant.VERSION) == null) {
-			((TextView) parent.findViewById(R.id.CustDataHostVersion))
-					.setText(R.string.updateError);
-			((Button) parent.findViewById(R.id.buttonUpdateCust))
-					.setEnabled(false);
-		} else {
-			((TextView) parent.findViewById(R.id.CustDataHostVersion))
-					.setText(infoDevice.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateCust))
-					.setEnabled(true);
-		}
 	}
 
 	// 得到配置文件地址
