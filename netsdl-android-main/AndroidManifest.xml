@@ -1,45 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest android:versionCode="1" android:versionName="1.0"
-    package="com.netsdl.android.main" xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <application android:icon="@drawable/logo"
-        android:label="@string/app_name" android:theme="@style/AppTheme">
-        <activity android:configChanges="keyboard|orientation"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.netsdl.android.main"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".view.LoginActivity"
+            android:configChanges="keyboard|orientation"
             android:label="@string/app_name"
-            android:name=".view.LoginActivity" android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--created by jasper at 2012-11-26 15:37:35-->
-        <!--created by jasper at 2013-02-20 16:32:13-->
-        <!--created by jasper at 2013-02-21 13:05:25-->
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.MainActivity" android:screenOrientation="landscape"/>
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.manage.ReturnToWhMainActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-02-21 13:09:52-->
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.manage.ReturnToWhDetailActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-02-21 14:20:03-->
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.manage.ShopTransferMainActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-02-21 14:20:35-->
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.manage.ShopTransferDetailActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-02-25 12:56:43-->
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.manage.ReturnToWhActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-02-25 12:57:10-->
-        <activity android:configChanges="keyboard|orientation"
-            android:name=".view.manage.ShopTransferActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-03-12 15:33:45-->
-        <activity android:name=".view.FunctionActivity" android:screenOrientation="landscape"/>
-        <!--created by jasper at 2013-03-13 11:31:00-->
-        <activity android:name="com.netsdl.android.main.view.sale.SaleActivity" android:screenOrientation="landscape" android:configChanges="keyboard"/>
+        <!-- created by jasper at 2012-11-26 15:37:35 -->
+        <!-- created by jasper at 2013-02-20 16:32:13 -->
+        <!-- created by jasper at 2013-02-21 13:05:25 -->
+        <activity
+            android:name=".view.MainActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".view.manage.ReturnToWhMainActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-02-21 13:09:52 -->
+        <activity
+            android:name=".view.manage.ReturnToWhDetailActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-02-21 14:20:03 -->
+        <activity
+            android:name=".view.manage.ShopTransferMainActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-02-21 14:20:35 -->
+        <activity
+            android:name=".view.manage.ShopTransferDetailActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-02-25 12:56:43 -->
+        <activity
+            android:name=".view.manage.ReturnToWhActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-02-25 12:57:10 -->
+        <activity
+            android:name=".view.manage.ShopTransferActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-03-12 15:33:45 -->
+        <activity
+            android:name=".view.FunctionActivity"
+            android:screenOrientation="landscape" />
+        <!-- created by jasper at 2013-03-13 11:31:00 -->
+        <activity
+            android:name="com.netsdl.android.main.view.sale.SaleActivity"
+            android:configChanges="keyboard"
+            android:screenOrientation="landscape" />
+        <activity android:name=".view.sale.SaleReturnActivity" android:screenOrientation="landscape" android:configChanges="keyboard"></activity>
     </application>
+
 </manifest>

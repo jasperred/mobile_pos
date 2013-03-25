@@ -193,7 +193,7 @@ public class Init {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
-								endDay();
+										endDay();
 							}
 						});
 						builder.setNegativeButton("取消", new OnClickListener() {
@@ -247,65 +247,126 @@ public class Init {
 				"9", Util.getLocalDeviceId(parent) }, new String[] {
 				DeviceMaster.COLUMN_INIT_ID, DeviceMaster.COLUMN_DEVICE_ID });
 		if (objs != null) {
-			String ftpUrl = DatabaseHelper.getColumnValue(objs,
+			final String ftpUrl = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_13, DeviceMaster.COLUMNS)
 					.toString();
-			String ftpPath = DatabaseHelper.getColumnValue(objs,
+			final String ftpPath = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_14, DeviceMaster.COLUMNS)
 					.toString();
-			String ftpUser = DatabaseHelper.getColumnValue(objs,
+			final String ftpUser = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_15, DeviceMaster.COLUMNS)
 					.toString();
-			String ftpPassword = DatabaseHelper.getColumnValue(objs,
+			final String ftpPassword = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_16, DeviceMaster.COLUMNS)
 					.toString();
 			// 将filepath下全部文件上传
-			String spath = filepath + File.separatorChar + "sale";
+			final String spath = filepath + File.separatorChar + "sale";
 			File[] saleUploadFiles = new File(spath).listFiles();
 			if (saleUploadFiles != null) {
-				for (File uf : saleUploadFiles) {
-					// 上传数据
-					boolean b = Util.ftpUpload(spath, uf.getName(), ftpUrl,
-							ftpPath, ftpUser, ftpPassword);
-					// 上传成功才备份
-					if (b) {
-						// 备份数据
-						bakup(spath, uf.getName());
-						// 删除生成的文件
-						uf.delete();
-					}
+				for (final File uf : saleUploadFiles) {
+					final Handler handler = new Handler() {
+
+						public void handleMessage(Message msg) {
+							switch (msg.what) {
+							case 0:
+								// 备份数据
+									bakup(spath, uf.getName());
+									// 删除生成的文件
+									uf.delete();
+								break;
+							case 1:
+								break;
+							}
+						};
+					};
+					new Thread(new Runnable() {
+
+						public void run() {
+
+							// 上传数据
+							boolean b = Util.ftpUpload(spath, uf.getName(), ftpUrl,
+									ftpPath, ftpUser, ftpPassword);
+							// 上传成功才备份
+							if (b) {
+								handler.sendEmptyMessage(0);
+							}
+							else
+								handler.sendEmptyMessage(1);
+						}
+					}).start();
+					
 				}
 			}
-			String rpath = filepath + File.separatorChar + "return";
+			final String rpath = filepath + File.separatorChar + "return";
 			File[] returnUploadFiles = new File(rpath).listFiles();
 			if (returnUploadFiles != null) {
-				for (File uf : returnUploadFiles) {
-					// 上传数据
-					boolean b = Util.ftpUpload(rpath, uf.getName(), ftpUrl,
-							ftpPath, ftpUser, ftpPassword);
-					// 上传成功才备份
-					if (b) {
-						// 备份数据
-						bakup(rpath, uf.getName());
-						// 删除生成的文件
-						uf.delete();
-					}
+				for (final File uf : returnUploadFiles) {
+					final Handler handler = new Handler() {
+
+						public void handleMessage(Message msg) {
+							switch (msg.what) {
+							case 0:
+								// 备份数据
+								bakup(rpath, uf.getName());
+								// 删除生成的文件
+								uf.delete();
+								break;
+							case 1:
+								break;
+							}
+						};
+					};
+					new Thread(new Runnable() {
+
+						public void run() {
+
+							// 上传数据
+							boolean b = Util.ftpUpload(rpath, uf.getName(), ftpUrl,
+									ftpPath, ftpUser, ftpPassword);
+							// 上传成功才备份
+							if (b) {
+								handler.sendEmptyMessage(0);
+							}
+							else
+								handler.sendEmptyMessage(1);
+						}
+					}).start();
 				}
 			}
-			String tpath = filepath + File.separatorChar + "transfer";
+			final String tpath = filepath + File.separatorChar + "transfer";
 			File[] transferUploadFiles = new File(tpath).listFiles();
 			if (transferUploadFiles != null) {
-				for (File uf : transferUploadFiles) {
-					// 上传数据
-					boolean b = Util.ftpUpload(tpath, uf.getName(), ftpUrl,
-							ftpPath, ftpUser, ftpPassword);
-					// 上传成功才备份
-					if (b) {
-						// 备份数据
-						bakup(tpath, uf.getName());
-						// 删除生成的文件
-						uf.delete();
-					}
+				for (final File uf : transferUploadFiles) {
+					final Handler handler = new Handler() {
+
+						public void handleMessage(Message msg) {
+							switch (msg.what) {
+							case 0:
+								// 备份数据
+								bakup(tpath, uf.getName());
+								// 删除生成的文件
+								uf.delete();
+								break;
+							case 1:
+								break;
+							}
+						};
+					};
+					new Thread(new Runnable() {
+
+						public void run() {
+
+							// 上传数据
+							boolean b = Util.ftpUpload(tpath, uf.getName(), ftpUrl,
+									ftpPath, ftpUser, ftpPassword);
+							// 上传成功才备份
+							if (b) {
+								handler.sendEmptyMessage(0);
+							}
+							else
+								handler.sendEmptyMessage(1);
+						}
+					}).start();
 				}
 			}
 		}
@@ -449,13 +510,26 @@ public class Init {
 	}
 
 	// 备份数据，并删除多余备份
-	private void bakup(String filepath, String filename)
-			throws IllegalArgumentException, SecurityException,
-			IllegalAccessException, NoSuchFieldException {
-		Object[] deviceMasterObjs = DatabaseHelper.getSingleColumn(
-				parent.getContentResolver(),
-				new Object[] { "9", Util.getLocalDeviceId(parent) },
-				DeviceMaster.class);
+	private void bakup(String filepath, String filename){
+		Object[] deviceMasterObjs = null;
+		try {
+			deviceMasterObjs = DatabaseHelper.getSingleColumn(
+					parent.getContentResolver(),
+					new Object[] { "9", Util.getLocalDeviceId(parent) },
+					DeviceMaster.class);
+		} catch (IllegalArgumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NoSuchFieldException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String bakpath = (String) DatabaseHelper.getColumnValue(
 				deviceMasterObjs, DeviceMaster.COLUMN_FIELD_02,
 				DeviceMaster.COLUMNS);
@@ -666,6 +740,10 @@ public class Init {
 				.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						try {
+							//清空版本信息
+							clearUpdateInfo();
+							//设置本地版本
+							setVersion();
 							new Thread(new Runnable() {
 
 								public void run() {
@@ -684,8 +762,6 @@ public class Init {
 
 	private void checkUpdate2() {
 		try {
-			clearUpdateInfo();
-			setVersion();
 			// String strLocalMacAddress =
 			// Util.getLocalMacAddress(parent);
 			// Log.d("LocalMacAddress",strLocalMacAddress);
@@ -815,8 +891,8 @@ public class Init {
 	}
 
 	private void checkUpdate() {
-		clearUpdateInfo();
-		setVersion();
+		// clearUpdateInfo();
+		// setVersion();
 		// 通过Config配置得到店铺数据的更新位置URL
 		String url = ConfigProperties.getProperties("pos.config.url");
 		if (url == null || url.trim().length() == 0) {

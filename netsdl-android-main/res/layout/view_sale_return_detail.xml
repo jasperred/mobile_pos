@@ -26,13 +26,13 @@
             android:layout_weight="1.8"
             android:gravity="left|center"
             android:text="@string/skuCd" />
-
+        
         <TextView
             android:id="@+id/itemNameTextView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginLeft="3dp"
-            android:layout_weight="1.4"
+            android:layout_weight="1.2"
             android:gravity="left|center"
             android:text="@string/itemName" />
 
@@ -71,9 +71,9 @@
             android:layout_weight="1.8"
             android:gravity="right|center"
             android:text="@string/ItemDiscount" />
-    </LinearLayout>
 
-    <LinearLayout
+    </LinearLayout>
+<LinearLayout
         android:id="@+id/layout_other"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -113,8 +113,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/list_selector1"
             android:clickable="false"
+            android:background="@drawable/list_selector1"
             android:orientation="vertical" >
 
             <ImageView
@@ -139,8 +139,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/list_selector1"
             android:clickable="false"
+            android:background="@drawable/list_selector1"
             android:orientation="vertical" >
 
             <ImageView
@@ -165,8 +165,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/list_selector1"
             android:clickable="false"
+            android:background="@drawable/list_selector1"
             android:orientation="vertical" >
 
             <ImageView
@@ -186,5 +186,4 @@
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

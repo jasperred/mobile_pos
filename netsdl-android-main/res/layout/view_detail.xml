@@ -13,11 +13,21 @@
         android:layout_weight="1" >
 
         <TextView
-            android:id="@+id/moneyTextView"
-            android:layout_width="wrap_content"
+            android:id="@+id/seqTextView"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="2"
-            android:gravity="left" />
+            android:layout_weight="3"
+            android:gravity="left|center"
+            android:text="@string/seq" />
+
+        <TextView
+            android:id="@+id/itemNameTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@string/itemName" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -26,25 +36,90 @@
         android:layout_weight="1" >
 
         <TextView
-            android:id="@+id/priceTextView"
+            android:id="@+id/skuCdTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="left" />
+            android:gravity="left"
+            android:text="@string/skuCd" />
 
         <TextView
-            android:id="@+id/subTextView"
+            android:id="@+id/itemCdTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="left" />
+            android:gravity="left"
+            android:text="@string/itemCd" />
 
         <TextView
             android:id="@+id/qtyTextView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="right" />
+            android:gravity="right"
+            android:text="@string/Quantity" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_other"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#808080"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/item_qty_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/list_selector1"
+            android:clickable="false"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/edit_icon"
+                android:gravity="right|center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/Quantity"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_delete_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/list_selector1"
+            android:clickable="false"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/delete_icon"
+                android:gravity="right|center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/delete"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

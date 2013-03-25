@@ -32,7 +32,7 @@
             android:layout_alignBaseline="@id/inputEditText"
             android:layout_alignRight="@id/inputEditText"
             android:layout_marginRight="5px"
-            android:background="@android:drawable/ic_input_delete" >
+            android:background="@drawable/backspace" >
 
         </Button>
     </RelativeLayout>

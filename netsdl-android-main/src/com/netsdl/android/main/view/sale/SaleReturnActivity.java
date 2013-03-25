@@ -4,7 +4,6 @@
 package com.netsdl.android.main.view.sale;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +47,7 @@ import com.netsdl.android.common.db.PaymentMaster;
 import com.netsdl.android.common.db.PosTable;
 import com.netsdl.android.common.db.SkuMaster;
 import com.netsdl.android.main.R;
+import com.netsdl.android.main.view.FunctionActivity;
 import com.netsdl.android.main.view.customer.EditTextButton;
 import com.netsdl.android.main.view.customer.InputDialog;
 
@@ -55,8 +55,8 @@ import com.netsdl.android.main.view.customer.InputDialog;
  * @author jasper
  * 
  */
-public class SaleActivity extends Activity implements OnItemClickListener,
-		OnItemLongClickListener {
+public class SaleReturnActivity extends Activity implements
+		OnItemClickListener, OnItemLongClickListener {
 	private String userId;
 	private String userName;
 	private String role;
@@ -87,8 +87,8 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_sale);
-		setTitle(R.string.sale_title);
+		setContentView(R.layout.activity_sale_return);
+		setTitle(R.string.sale_return_title);
 		initData();
 		init();
 	}
@@ -190,10 +190,10 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 				if (dataList.size() == 0) {
 					return;
 				}
-				PayDialog payDialog = new PayDialog(SaleActivity.this);
+				PayDialog payDialog = new PayDialog(SaleReturnActivity.this);
 				payDialog.setPayMethodList(payMethodList);
 				payDialog.setPayable(new BigDecimal(
-						((TextView) SaleActivity.this
+						((TextView) SaleReturnActivity.this
 								.findViewById(R.id.amtTextView)).getText()
 								.toString()));
 				DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -239,7 +239,7 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 				.findViewById(R.id.listViewItem);
 		LayoutInflater inflater = LayoutInflater.from(this);
 		LinearLayout head = (LinearLayout) inflater.inflate(
-				R.layout.view_sale_detail, null);
+				R.layout.view_sale_return_detail, null);
 		head.setBackgroundColor(Color.LTGRAY);
 		head.setBaselineAligned(true);
 		listViewItem.addHeaderView(head);
@@ -254,20 +254,31 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 
 	// 初始化数据
 	private void initData() {
-		Bundle data = this.getIntent().getExtras();
-		if (data != null) {
-			userId = data.getString("userId");
-			userName = data.getString("userName");
-			role = data.getString("role");
-			localShopName = data.getString("localShopName");
-			localShopCode = data.getString("localShopCode");
-			if (userName != null)
-				((TextView) this.findViewById(R.id.salemanTextView))
-						.setText(userName);
-			if (localShopName != null)
-				((TextView) this.findViewById(R.id.shopNameTextView))
-						.setText(localShopName);
-		}
+		// Bundle data = this.getIntent().getExtras();
+		// if (data != null) {
+		// userId = data.getString("userId");
+		// userName = data.getString("userName");
+		// role = data.getString("role");
+		// localShopName = data.getString("localShopName");
+		// localShopCode = data.getString("localShopCode");
+		// if (userName != null)
+		// ((TextView) this.findViewById(R.id.salemanTextView))
+		// .setText(userName);
+		// if (localShopName != null)
+		// ((TextView) this.findViewById(R.id.shopNameTextView))
+		// .setText(localShopName);
+		// }
+		userId = FunctionActivity.userId;
+		userName = FunctionActivity.userName;
+		role = FunctionActivity.role;
+		localShopName = FunctionActivity.localShopName;
+		localShopCode = FunctionActivity.localShopCode;
+		if (userName != null)
+			((TextView) this.findViewById(R.id.salemanTextView))
+					.setText(userName);
+		if (localShopName != null)
+			((TextView) this.findViewById(R.id.shopNameTextView))
+					.setText(localShopName);
 
 		if (dataMap == null)
 			dataMap = new HashMap<String, Integer>(20);
@@ -301,7 +312,8 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 						calendar.setTime(Util.toDateForString(saleDate,
 								"yyyy-MM-dd"));
 						DatePickerDialog dd = new DatePickerDialog(
-								SaleActivity.this, new OnDateSetListener() {
+								SaleReturnActivity.this,
+								new OnDateSetListener() {
 
 									public void onDateSet(DatePicker view,
 											int year, int monthOfYear,
@@ -427,7 +439,6 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 					seq++;
 					m = new HashMap(10, 1F);
 					m.put("seq", seq);
-					m.put(SkuMaster.COLUMN_BAR_CODE, str);
 					m.put(SkuMaster.COLUMN_ITEM_NAME, DatabaseHelper
 							.getColumnValue(objs, SkuMaster.COLUMN_ITEM_NAME,
 									SkuMaster.COLUMNS));
@@ -656,11 +667,13 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 	private String[] getBaseInsertPosTableString(String strUUID,
 			String timestamp, String flag) {
 
-		String strs[] = new String[] { strUUID, ((EditText) this
-				.findViewById(R.id.saleDateEditText)).getText().toString(), timestamp, "DO",
-				"1", this.localShopCode, this.localShopName, this.custNo,
-				this.custName, this.userId, this.userName, flag, "", "", "",
-				"", "", "", "", "", "0", "0", "0", "0", "" };
+		String strs[] = new String[] {
+				strUUID,
+				((EditText) this.findViewById(R.id.saleDateEditText)).getText()
+						.toString(), timestamp, "DO", "-1", this.localShopCode,
+				this.localShopName, this.custNo, this.custName, this.userId,
+				this.userName, flag, "", "", "", "", "", "", "", "", "0", "0",
+				"0", "0", "" };
 		return strs;
 	}
 
@@ -757,7 +770,7 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 
 							public void onClick(View v) {
 								InputDialog inputDialog = new InputDialog(
-										SaleActivity.this);
+										SaleReturnActivity.this);
 								inputDialog
 										.setTitle(R.string.messagePriceChange);
 								DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -787,7 +800,7 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 							public void onClick(View v) {
 
 								InputDialog inputDialog = new InputDialog(
-										SaleActivity.this);
+										SaleReturnActivity.this);
 								inputDialog.setInt(true);
 								inputDialog.setTitle(R.string.messageQtyChange);
 								DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -819,7 +832,7 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 							public void onClick(View v) {
 
 								InputDialog inputDialog = new InputDialog(
-										SaleActivity.this);
+										SaleReturnActivity.this);
 								inputDialog.setTitle("输入折扣比例:1~100");
 								inputDialog.setInt(true);
 								inputDialog.setMax(new BigDecimal(100));

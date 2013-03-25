@@ -6,6 +6,10 @@
     <string name="longin_title">NetSDL AMI Smart POS---登录</string>
     <string name="function_title">NetSDL AMI Smart POS---功能区</string>
     <string name="sale_title">NetSDL AMI Smart POS---收银</string>
+    <string name="sale_return_title">NetSDL AMI Smart POS---客户退货</string>
+    <string name="return_to_wh_title">NetSDL AMI Smart POS---返品</string>
+    <string name="transfer_title">NetSDL AMI Smart POS---移动</string>
+    <string name="check_title">NetSDL AMI Smart POS---盘点</string>
     <string name="blank"></string>
     <string name="loginOperate">操作员登录</string>
     <string name="operaterID">用户编号输入</string>
@@ -105,14 +109,21 @@
     <string name="saleShop">店铺:</string>
     <string name="saleBusiness">收银</string>
     <string name="otherBusiness">其它业务</string>
-    <string name="loginMethod">业务</string>
+    <string name="loginMethod">业务选择</string>
     <string name="seq">序号</string>
     <string name="itemName">名称</string>
+    <string name="skuCd">SKU</string>
     <string name="price">价格</string>
     <string name="payAmt">应付:</string>
     <string name="paidAmt">已付金额:</string>
     <string name="payDiff">应付余额:</string>
     <string name="change">找零:</string>
+    <string name="delete">删除</string>
+    <string name="messagePriceChange">价格调整</string>
+    <string name="messageQtyChange">数量调整</string>
+    <string name="messageDiscountChange">折扣调整</string>
+    <string name="check">盘点</string>
+    <string name="itemCd">商品编码</string>
 
     
 </resources>

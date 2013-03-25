@@ -208,10 +208,11 @@ public class PayDialog extends Dialog {
 			if (str == null)
 				return;
 			String t = moneyEditText.getText().toString().trim();
-			if (new BigDecimal(t).doubleValue() == 0)
-				t = str.trim();
+			if(t.equals("0")&&!str.equals("."))
+				t = str;
 			else
 				t = t + str.trim();
+			//保证小数位数
 			moneyEditText.setText(t);
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block

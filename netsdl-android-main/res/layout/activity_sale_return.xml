@@ -35,6 +35,7 @@
                         android:layout_weight="2"
                         android:gravity="bottom"
                         android:text="@string/saleAmt"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -316,18 +317,18 @@
                 android:layout_weight="1" >
 
                 <Button
-                    android:id="@+id/button0"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:text="@string/n0" />
-
-                <Button
                     android:id="@+id/buttonPoint"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/Pay" />
+
+                <Button
+                    android:id="@+id/button0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:text="@string/n0" />
 
                 <Button
                     android:id="@+id/buttonConfirm"

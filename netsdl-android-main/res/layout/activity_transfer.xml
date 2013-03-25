@@ -57,7 +57,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent"
+            android:layout_weight="9" >
 
             <TextView
                 android:id="@+id/saleMassageTextView"
@@ -65,32 +66,33 @@
                 android:layout_height="fill_parent"
                 android:text="@string/scan"/>
 
-            <EditText
-                android:id="@+id/scanEditText"
+            <com.netsdl.android.main.view.customer.EditTextButton
+                android:id="@+id/scanEditTextButton"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:singleLine="true" >
 
                 <requestFocus />
-            </EditText>
+            </com.netsdl.android.main.view.customer.EditTextButton>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/paidTextView"
                     android:layout_width="70dp"
                     android:layout_height="fill_parent"
-                    android:text="@string/shop"
-                    android:textColor="@drawable/white" />
+                    android:text="@string/shop" />
 
                 <EditText
                     android:id="@+id/localShopEditText"
@@ -102,7 +104,8 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/salemanTextView"
@@ -119,7 +122,8 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/saleDateTextView"
@@ -136,7 +140,8 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/textView7"
@@ -153,7 +158,15 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
 
                 <Button
                     android:id="@+id/backButton"

@@ -15,5 +15,7 @@
     <drawable name="dark_slate_blue">#483D8B</drawable>
     <drawable name="crimson">#DC143C</drawable>
     <drawable name="light_gray">#a1a3a6</drawable>
+    <drawable name="file_list_item_press">#ff5b544d</drawable>
+    <drawable name="file_list_item_normal">#ff787470</drawable>
     
 </resources>

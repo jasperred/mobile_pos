@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -284,11 +285,9 @@ public class Util {
 		try {
 			ftpClient = new FTPClient();
 			String[] fs = ftpUrl.split(":");
-			if(fs!=null&&fs.length==2)
-			{
+			if (fs != null && fs.length == 2) {
 				ftpClient.connect(fs[0], new Integer(fs[1]));
-			}
-			else
+			} else
 				ftpClient.connect(ftpUrl);
 			ftpClient.login(ftpUser, ftpPassword);
 
@@ -364,26 +363,45 @@ public class Util {
 	 * @return
 	 */
 	public static BigDecimal round(BigDecimal num) {
-		int digit = 2;
+		return round(num, 2);
+	}
+
+	public static BigDecimal round(BigDecimal num, int digit) {
 		if (num == null)
 			return new BigDecimal(0);
 		BigDecimal a = num.setScale(digit, BigDecimal.ROUND_HALF_UP);
-		if(a.intValue()==a.doubleValue())
-		{
+		if (a.intValue() == a.doubleValue()) {
 			a = new BigDecimal(a.intValue());
 		}
 		return a;
 	}
+
 	/**
 	 * 日期转换
+	 * 
 	 * @param date
 	 * @param format
 	 * @return
 	 */
-	public static String dateToString(Date date,String format)
-	{
+	public static String dateToString(Date date, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.format(date);
+	}
+
+	public static Date toDateForString(String date, String format) {
+		if (date == null || date.trim().length() == 0)
+			return null;
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+		Date d = null;
+		try {
+			d = sdf.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return d;
+
 	}
 
 }
