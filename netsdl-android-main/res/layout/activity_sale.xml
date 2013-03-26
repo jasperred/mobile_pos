@@ -21,7 +21,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:orientation="horizontal" >
 
                 <LinearLayout
@@ -45,7 +45,6 @@
                         android:gravity="center"
                         android:text="0"
                         android:textSize="30dp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -75,26 +74,22 @@
                             android:gravity="center"
                             android:text="0"
                             android:textSize="30dp" />
-
                     </LinearLayout>
-
                 </LinearLayout>
-
             </LinearLayout>
 
             <ListView
                 android:id="@+id/listViewItem"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1">
-
+                android:layout_weight="1" >
             </ListView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="8"
+            android:layout_weight="5"
             android:orientation="horizontal" >
 
             <TextView
@@ -109,7 +104,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center|left" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -128,7 +122,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -150,7 +144,6 @@
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
                         android:gravity="center|left" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -178,7 +171,6 @@
                             android:layout_weight="1"
                             android:gravity="center|left"
                             android:text="test" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -190,17 +182,14 @@
                             android:id="@+id/saleDateEditText"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent" />
-
                     </LinearLayout>
-
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:background="@drawable/white"
                 android:orientation="horizontal" >
 
@@ -217,15 +206,15 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TableLayout
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="2"
-            android:shrinkColumns="2"
-            android:stretchColumns="3" >
+            android:orientation="vertical" >
 
-            <TableRow
-                android:id="@+id/tableRow1"
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
@@ -250,10 +239,10 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n9" />
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow2"
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
@@ -278,10 +267,10 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n6" />
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow3"
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
@@ -306,11 +295,10 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n3" />
+            </LinearLayout>
 
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow4"
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
@@ -335,10 +323,8 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/Confirm" />
-
-            </TableRow>
-        </TableLayout>
-
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

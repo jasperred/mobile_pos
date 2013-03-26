@@ -89,8 +89,8 @@ public class InputDialog extends Dialog {
 		super.show();
 		// 设置窗口大小
 		WindowManager.LayoutParams params = this.getWindow().getAttributes();
-		params.width = (int) (width * 0.6);
-		params.height = (int) (height * 0.6);
+		params.width = (int) (width * 0.4);
+		params.height = (int) (height*0.83);
 		this.getWindow().setAttributes(params);
 		try {
 			Looper.getMainLooper().loop();

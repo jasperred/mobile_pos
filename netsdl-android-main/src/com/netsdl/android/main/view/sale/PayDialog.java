@@ -77,7 +77,7 @@ public class PayDialog extends Dialog {
 		//设置窗口大小
 		WindowManager.LayoutParams params = this.getWindow().getAttributes();
 		 params.width = (int) (width*0.8);
-		 params.height =(int) (height*0.8) ;
+		 params.height =(int) (height) ;
 		 this.getWindow().setAttributes(params);
 		try {
 			Looper.getMainLooper().loop();

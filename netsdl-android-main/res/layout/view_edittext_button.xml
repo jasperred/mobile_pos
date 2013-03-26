@@ -17,11 +17,10 @@
             android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="5px"
-            android:layout_marginRight="5px"
+            android:layout_marginRight="0px"
             android:hint=""
             android:paddingRight="37px"
-            android:singleLine="true"
-            android:textSize="18sp" >
+            android:singleLine="true">
 
         </EditText>
 
@@ -31,8 +30,8 @@
             android:layout_height="fill_parent"
             android:layout_alignBaseline="@id/inputEditText"
             android:layout_alignRight="@id/inputEditText"
-            android:layout_marginRight="5px"
-            android:background="@drawable/backspace" >
+            android:layout_marginRight="0px"
+            android:text="←" >
 
         </Button>
     </RelativeLayout>

@@ -111,7 +111,7 @@ public final class R {
         public static final int inputEditText=0x7f06007f;
         public static final int inputEditTextButton=0x7f060081;
         public static final int itemCdTextView=0x7f060078;
-        public static final int itemNameTextView=0x7f060076;
+        public static final int itemNameTextView=0x7f060077;
         public static final int item_delete_layout=0x7f06007c;
         public static final int item_discount_layout=0x7f060097;
         public static final int item_price_layout=0x7f060096;
@@ -169,7 +169,7 @@ public final class R {
         public static final int searchFunctionButton=0x7f060004;
         public static final int seqTextView=0x7f060075;
         public static final int shopNameTextView=0x7f060037;
-        public static final int skuCdTextView=0x7f060077;
+        public static final int skuCdTextView=0x7f060076;
         public static final int spinnerOperator=0x7f06006e;
         public static final int status=0x7f06005c;
         public static final int subTextView=0x7f060095;

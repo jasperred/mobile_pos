@@ -575,20 +575,18 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 			// 标准单价
 			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_S_PRICE,
 					PosTable.COLUMNS)] = itemPrice.toString();
-			// 销售价
-			BigDecimal pPrice = (BigDecimal) m.get(SkuMaster.COLUMN_ITEM_PRICE);
-			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_P_PRICE,
-					PosTable.COLUMNS)] = pPrice.toString();
 			// 数量
+			Integer qty = (Integer) m.get("qty");
 			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_QTY,
-					PosTable.COLUMNS)] = m.get("qty").toString();
+					PosTable.COLUMNS)] = qty.toString();
 			// 原价合计
 			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_S_AMT,
 					PosTable.COLUMNS)] = itemPrice.multiply(
 					new BigDecimal(m.get("qty").toString())).toString();
 			// 小计
+			BigDecimal subTotal = (BigDecimal) m.get("subTotal");
 			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_P_AMT,
-					PosTable.COLUMNS)] = m.get("subTotal").toString();
+					PosTable.COLUMNS)] = subTotal.toString();
 			// 日结标记
 			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_END_DAY,
 					PosTable.COLUMNS)] = "0";
@@ -601,6 +599,13 @@ public class SaleActivity extends Activity implements OnItemClickListener,
 					new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP);
 			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_P_STD_PRICE,
 					PosTable.COLUMNS)] = pStdPrice.toString();
+			// 销售价
+			BigDecimal price = (BigDecimal) m.get(SkuMaster.COLUMN_ITEM_PRICE);
+			//计算后的销售价，小计/数量
+			BigDecimal pPrice = subTotal.divide(new BigDecimal(qty), 2,
+					BigDecimal.ROUND_HALF_UP);
+			item[DatabaseHelper.getColumnIndex(PosTable.COLUMN_P_PRICE,
+					PosTable.COLUMNS)] = pPrice.toString();
 			// 折扣
 			BigDecimal pDiscount = null;
 			if (pStdPrice.doubleValue() == 0)

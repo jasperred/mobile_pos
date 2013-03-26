@@ -8,7 +8,7 @@
         android:id="@+id/inputEditTextButton"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="4" >
+        android:layout_weight="5" >
     </com.netsdl.android.main.view.customer.EditTextButton>
 
     <TableLayout

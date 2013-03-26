@@ -2,75 +2,115 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/orderLineLayout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:background="@drawable/list_selector"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="50dp" >
+        android:layout_height="fill_parent" >
 
-        <TextView
-            android:id="@+id/seqTextView"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1.9"
-            android:gravity="left|center"
-            android:text="@string/seq" />
+            android:layout_weight="1.5"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/skuCdTextView"
+            <TextView
+                android:id="@+id/seqTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="left|center"
+                android:text="@string/seq" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.8"
-            android:gravity="left|center"
-            android:text="@string/skuCd" />
+            android:layout_weight="1"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/itemNameTextView"
+            <TextView
+                android:id="@+id/skuCdTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1.8"
+                android:gravity="left|center"
+                android:text="@string/skuCd" />
+
+            <TextView
+                android:id="@+id/itemNameTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1.4"
+                android:gravity="left|center"
+                android:text="@string/itemName" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.4"
-            android:gravity="left|center"
-            android:text="@string/itemName" />
+            android:layout_weight="1.5"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/priceTextView"
+            <TextView
+                android:id="@+id/priceTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1.8"
+                android:gravity="right|center"
+                android:text="@string/Price" />
+
+            <TextView
+                android:id="@+id/qtyTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1.9"
+                android:gravity="right|center"
+                android:text="@string/Quantity" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.8"
-            android:gravity="right|center"
-            android:text="@string/Price" />
+            android:layout_weight="1.5"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/qtyTextView"
+            <TextView
+                android:id="@+id/subTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1.8"
+                android:gravity="right|center"
+                android:text="@string/subTotal" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.9"
-            android:gravity="right|center"
-            android:text="@string/Quantity" />
+            android:layout_weight="1.5"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/subTextView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.8"
-            android:gravity="right|center"
-            android:text="@string/subTotal" />
+            <TextView
+                android:id="@+id/discountTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1.8"
+                android:gravity="right|center"
+                android:text="@string/ItemDiscount" />
 
-        <TextView
-            android:id="@+id/discountTextView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.8"
-            android:gravity="right|center"
-            android:text="@string/ItemDiscount" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
