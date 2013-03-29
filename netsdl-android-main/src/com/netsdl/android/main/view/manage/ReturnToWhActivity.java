@@ -694,8 +694,9 @@ OnItemLongClickListener {
 								dataMap.clear();
 								for (int i = 0; i < dataList.size(); i++) {
 									Map m = dataList.get(i);
+									m.put("seq", i+1);
 									dataMap.put((String) m
-											.get("SkuMaster.COLUMN_BAR_CODE"),
+											.get(SkuMaster.COLUMN_BAR_CODE),
 											i);
 								}
 								seq = dataList.size();
