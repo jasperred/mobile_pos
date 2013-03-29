@@ -2,8 +2,16 @@
 <resources>
 
     <string name="hello">Hello World, NetSDLActivity!</string>
-    <string name="app_name">NetSDL AMI Smart POS</string>
+    <string name="app_name">POS</string>
+    <string name="longin_title">NetSDL AMI Smart POS---登录</string>
+    <string name="function_title">NetSDL AMI Smart POS---功能区</string>
+    <string name="sale_title">NetSDL AMI Smart POS---收银</string>
+    <string name="sale_return_title">NetSDL AMI Smart POS---客户退货</string>
+    <string name="return_to_wh_title">NetSDL AMI Smart POS---返品</string>
+    <string name="transfer_title">NetSDL AMI Smart POS---移动</string>
+    <string name="check_title">NetSDL AMI Smart POS---盘点</string>
     <string name="blank"></string>
+    <string name="loginOperate">操作员登录</string>
     <string name="operaterID">用户编号输入</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
@@ -17,6 +25,7 @@
     <string name="n7">７</string>
     <string name="n8">８</string>
     <string name="n9">９</string>
+    <string name="point">.</string>
     <string name="back">←</string>
     <string name="clear">Ｃ</string>
     <string name="returnn">┘</string>
@@ -27,9 +36,9 @@
     <string name="lumpSum">合计</string>
     <string name="lumpSum1">应收合计</string>
     <string name="lumpSum2">已付合计</string>
-    <string name="Payment">Payment</string>
+    <string name="Payment">支付</string>
     <string name="CheckOut">Check Out</string>
-    <string name="Pay">小计</string>
+    <string name="Pay">结算</string>
     <string name="Return">返回</string>
     <string name="Close">结单</string>
     <string name="GotoSystem">进入系统</string>
@@ -48,6 +57,7 @@
     <string name="msg_no_id">没有此编号的用户</string>
     <string name="msg_id_must_be_number">编号必须是数字</string>
     <string name="msg_password_wrong">密码错误。重新输入密码或者点【退格】重新输入用户编码</string>
+    <string name="msg_no_and_pass">用户名或密码错误</string>
     <string name="msg_no_sku">无此商品</string>
     <string name="s_view_btn">s_view_btn</string>
     <string name="Confirm">确认</string>
@@ -72,6 +82,7 @@
     <string name="ItemDiscount">折扣</string>
     <string name="pay_msg1">无商品</string>
     <string name="pay_msg2">支付未完成</string>
+    <string name="pay_msg3">支付完成</string>
     <string name="oldPrice">原价</string>
     <string name="returnToWh">返品处理</string>
     <string name="scan">扫描</string>
@@ -88,6 +99,31 @@
     <string name="messageFail">操作失败</string>
     <string name="messageSuccess">操作成功</string>
     <string name="messageNoUpload">没有需要上传的数据</string>
+    <string name="messageNoPermission">无权限操作</string>
+    <string name="login">登录</string>
+    <string name="logout">退出</string>
+    <string name="storeManage">店长登录</string>
+    <string name="saleMassage">提示：</string>
+    <string name="saleAmt">合计:</string>
+    <string name="saleCountQty">数量:</string>
+    <string name="saleShop">店铺:</string>
+    <string name="saleBusiness">收银</string>
+    <string name="otherBusiness">其它业务</string>
+    <string name="loginMethod">业务选择</string>
+    <string name="seq">序号</string>
+    <string name="itemName">名称</string>
+    <string name="skuCd">SKU</string>
+    <string name="price">价格</string>
+    <string name="payAmt">应付:</string>
+    <string name="paidAmt">已付金额:</string>
+    <string name="payDiff">应付余额:</string>
+    <string name="change">找零:</string>
+    <string name="delete">删除</string>
+    <string name="messagePriceChange">价格调整</string>
+    <string name="messageQtyChange">数量调整</string>
+    <string name="messageDiscountChange">折扣调整</string>
+    <string name="check">盘点</string>
+    <string name="itemCd">商品编码</string>
 
     
 </resources>

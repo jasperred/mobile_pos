@@ -21,6 +21,7 @@ import com.netsdl.android.common.db.PosTable;
 import com.netsdl.android.common.db.SkuMaster;
 import com.netsdl.android.common.db.StoreMaster;
 import com.netsdl.android.common.view.dialog.Dialogable;
+import com.netsdl.android.main.R;
 
 import android.app.Activity;
 import android.app.Dialog;

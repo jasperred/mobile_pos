@@ -23,13 +23,12 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:orientation="vertical" >
-
+
                 <ListView
                     android:id="@+id/listViewItem"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1" >
-
                 </ListView>
 
                 <LinearLayout
@@ -46,17 +45,15 @@
                         android:textColor="@drawable/deep_green"
                         android:textSize="15dp"
                         android:textStyle="bold" />
-
+
                     <TextView
-                        android:id="@+id/all_item_fee"
+                        android:id="@+id/amtTextView"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textColor="@drawable/crimson"
-                        android:textSize="16dp"
-                         />
-
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -87,7 +84,7 @@
                         android:textColor="@drawable/deep_green"
                         android:textSize="15dp"
                         android:textStyle="bold" />
-
+
                     <TextView
                         android:id="@+id/all_pay_fee"
                         android:layout_width="fill_parent"
@@ -95,9 +92,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textColor="@drawable/crimson"
-                        android:textSize="16dp"
-                         />
-
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -107,7 +102,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="4"
             android:orientation="vertical" >
-
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -129,7 +124,7 @@
                         android:textColor="@drawable/maroon"
                         android:textSize="18dp"
                         android:textStyle="bold" />
-
+
                     <TextView
                         android:id="@+id/textViewQty"
                         android:layout_width="fill_parent"
@@ -142,10 +137,9 @@
                         android:textColor="@drawable/red"
                         android:textSize="20dp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
             </LinearLayout>
-
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -372,7 +366,7 @@
                             android:layout_weight="1" >
 
                             <Button
-                                android:id="@+id/buttonPay"
+                                android:id="@+id/buttonPoint"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
                                 android:layout_weight="1"

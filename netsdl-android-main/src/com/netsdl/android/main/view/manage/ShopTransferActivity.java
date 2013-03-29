@@ -12,30 +12,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.netsdl.android.common.Constant;
-import com.netsdl.android.common.Util;
-import com.netsdl.android.common.db.CustMaster;
-import com.netsdl.android.common.db.DatabaseHelper;
-import com.netsdl.android.common.db.DeviceMaster;
-import com.netsdl.android.common.db.PosTable;
-import com.netsdl.android.common.db.SkuMaster;
-import com.netsdl.android.common.db.StoreMaster;
-import com.netsdl.android.main.R;
-import com.netsdl.android.main.view.MainActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -45,12 +42,30 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+
+import com.netsdl.android.common.Constant;
+import com.netsdl.android.common.Util;
+import com.netsdl.android.common.db.CustMaster;
+import com.netsdl.android.common.db.DatabaseHelper;
+import com.netsdl.android.common.db.DeviceMaster;
+import com.netsdl.android.common.db.PosTable;
+import com.netsdl.android.common.db.SkuMaster;
+import com.netsdl.android.common.db.StoreMaster;
+import com.netsdl.android.main.R;
+import com.netsdl.android.main.view.FunctionActivity;
+import com.netsdl.android.main.view.customer.EditTextButton;
+import com.netsdl.android.main.view.customer.InputDialog;
+import com.netsdl.android.main.view.manage.ReturnToWhActivity.ItemAdapter;
+import com.netsdl.android.main.view.manage.ReturnToWhActivity.ItemAdapter.ViewHolder;
 
 /**
  * @author jasper
  *
  */
-public class ShopTransferActivity extends Activity {
+public class ShopTransferActivity extends Activity implements OnItemClickListener,
+OnItemLongClickListener {
 	private String[] custNos;
 	private String[] custNames;
 	private String[] operatorNos;
@@ -61,7 +76,14 @@ public class ShopTransferActivity extends Activity {
 	private Map<String, Map> barcodeMap;//缓存SKU
 	private List<String> barcodeList;
 	private final String ORDER_TYPE = "DO";
+	private EditText scanEditText;
 
+	private List<Map<String, Object>> dataList;// 保存销售数据
+	private Map<String, Integer> dataMap;// 保存barcode在dataList中的位置
+	private int seq;// 输入顺序
+
+	private ItemAdapter listItemAdapter;
+	private int currentPosition = -1;// 记录明细选择的位置
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -69,6 +91,7 @@ public class ShopTransferActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_transfer);
+		setTitle(R.string.transfer_title);
 		init();
 		initContral();
 
@@ -163,8 +186,9 @@ public class ShopTransferActivity extends Activity {
 					}
 				});
 		//扫描
-		EditText scanEditText = (EditText) this
-				.findViewById(R.id.scanEditText);
+		if(scanEditText==null)
+			scanEditText = ((EditTextButton) this
+					.findViewById(R.id.scanEditTextButton)).getInputEditText();
 		scanEditText.setOnKeyListener(new OnKeyListener() {
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
 				try {
@@ -182,66 +206,28 @@ public class ShopTransferActivity extends Activity {
 			}
 		});
 		scanEditText.setFocusable(true);
+		if (dataMap == null)
+			dataMap = new HashMap<String, Integer>(20);
+		dataMap.clear();
+		if (dataList == null)
+			dataList = new ArrayList(20);
+		dataList.clear();
 		//初始化明细的表头
-		ListView detailView = ((ListView) this
-				.findViewById(R.id.detailListView));
-		if (detailView.getHeaderViewsCount() == 0) {
-			LinearLayout lin = new LinearLayout(this);
-			lin.setOrientation(LinearLayout.VERTICAL);
-			LinearLayout lin1 = new LinearLayout(this);
-			lin1.setOrientation(LinearLayout.HORIZONTAL);//item name
-			lin1.setGravity(Gravity.LEFT);
-			LinearLayout lin2 = new LinearLayout(this);
-			lin2.setOrientation(LinearLayout.HORIZONTAL);//others
-			TextView skuTextView = new TextView(this);
-			skuTextView.setGravity(Gravity.LEFT);
-			skuTextView.setTextColor(Color.WHITE);
-			//skuTextView.setTextSize(30);
-			skuTextView.setText("SKU编码");
-			TextView itemTextView = new TextView(this);
-			itemTextView.setGravity(Gravity.LEFT);
-			itemTextView.setTextColor(Color.WHITE);
-			//itemTextView.setTextSize(30);
-			itemTextView.setText("商品编码");
-			TextView titleTextView = new TextView(this);
-			titleTextView.setGravity(Gravity.LEFT);
-			titleTextView.setTextColor(Color.WHITE);
-			//titleTextView.setTextSize(30);
-			titleTextView.setText("商品名称");
-			TextView qtyTextView = new TextView(this);
-			qtyTextView.setGravity(Gravity.RIGHT);
-			qtyTextView.setTextColor(Color.WHITE);
-			//qtyTextView.setTextSize(30);
-			qtyTextView.setText("数量");
-			lin1.addView(titleTextView, 0, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.FILL_PARENT,
-					LinearLayout.LayoutParams.FILL_PARENT, 1));
-			lin2.addView(skuTextView, 0, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT,
-					LinearLayout.LayoutParams.FILL_PARENT, 1));
-			lin2.addView(itemTextView, 1, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT,
-					LinearLayout.LayoutParams.FILL_PARENT, 1));
-			lin2.addView(qtyTextView, 2, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT,
-					LinearLayout.LayoutParams.FILL_PARENT, 1));
-			lin.addView(lin1, 0, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.FILL_PARENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-			lin.addView(lin2, 1, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.FILL_PARENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-			detailView.addHeaderView(lin);
+		final ListView listViewItem = (ListView) this
+				.findViewById(R.id.detailListView);
+		LayoutInflater inflater = LayoutInflater.from(this);
+		LinearLayout head = (LinearLayout) inflater.inflate(
+				R.layout.view_detail, null);
+		head.setBackgroundColor(Color.LTGRAY);
+		head.setBaselineAligned(true);
+		listViewItem.addHeaderView(head);
+		if (listItemAdapter == null) {
+			listItemAdapter = new ItemAdapter(this);
+			listViewItem.setAdapter(listItemAdapter);
 		}
-		// 初始化时Detail增加一条空记录，否则头无法显示
-		SimpleAdapter listItemAdapter = new SimpleAdapter(
-				detailView.getContext(), new ArrayList(), R.layout.view_detail,
-				new String[] { SkuMaster.COLUMN_SKU_CD,
-						SkuMaster.COLUMN_ITEM_CD, SkuMaster.COLUMN_ITEM_NAME,
-						"qty" }, new int[] { R.id.skuCdTextView,
-						R.id.itemCdTextView, R.id.itemNameTextView,
-						R.id.qtyTextView });
-		detailView.setAdapter(listItemAdapter);
+
+		listViewItem.setOnItemClickListener(this);
+		listViewItem.setOnItemLongClickListener(this);
 		if (barcodeMap == null)
 			barcodeMap = new HashMap();
 		barcodeMap.clear();
@@ -250,6 +236,21 @@ public class ShopTransferActivity extends Activity {
 		barcodeList.clear();
 	}
 
+	// 明细长按事件
+	public boolean onItemLongClick(AdapterView<?> listview, View arg1,
+			int position, long arg3) {
+		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		vibrator.vibrate(40);
+		currentPosition = position - 1;
+		listItemAdapter.notifyDataSetChanged();
+		return true;
+	}
+
+	public void onItemClick(AdapterView<?> listview, View arg1, int position,
+			long arg3) {
+		currentPosition = -1;
+		listItemAdapter.notifyDataSetChanged();
+	}
 	// 退货确认，保存后清空数据
 	private void transferConfirm() {
 		ListView detailView = ((ListView) this
@@ -333,7 +334,7 @@ public class ShopTransferActivity extends Activity {
 	private void backToFunction() {
 		Intent gotoIntent = new Intent(
 				ShopTransferActivity.this,
-				MainActivity.class);
+				FunctionActivity.class);
 		Bundle bundle = new Bundle();
 		// 临时方法，IS_LOGIN为true表示已经是登录状态，在MainActivity的onCreate处理中直接进到function界面
 		bundle.putBoolean(Constant.IS_LOGIN, true);
@@ -486,8 +487,6 @@ public class ShopTransferActivity extends Activity {
 	
 	//扫描
 	private void barcodeSearch() {
-		EditText scanEditText = (EditText) this
-				.findViewById(R.id.scanEditText);
 		String str = scanEditText.getText().toString().trim();
 		if (str.length() == 0)
 			return;
@@ -512,50 +511,59 @@ public class ShopTransferActivity extends Activity {
 			Toast.makeText(this, R.string.messageNoSku, Toast.LENGTH_LONG)
 					.show();
 		} else {
-			Map m = barcodeMap.get(str);
+			//Map m = barcodeMap.get(str);
+			Integer i = dataMap.get(str);
+			Map m = null;
+			if (i != null)
+				m = dataList.get(i);
 			if (m == null) {
-				Map mm = new HashMap();
-				mm.put(PosTable.COLUMN_SKU_CD, sl[DatabaseHelper.getColumnIndex(SkuMaster.COLUMN_SKU_CD, SkuMaster.COLUMNS)]);
-				mm.put(PosTable.COLUMN_ITEM_NAME, sl[DatabaseHelper.getColumnIndex(SkuMaster.COLUMN_ITEM_NAME, SkuMaster.COLUMNS)]);
-				mm.put(PosTable.COLUMN_QTY, 1);
-				mm.put(SkuMaster.COLUMN_ITEM_CD, sl[DatabaseHelper.getColumnIndex(SkuMaster.COLUMN_ITEM_CD, SkuMaster.COLUMNS)]);
-				
-				barcodeMap.put(str, mm);
-				barcodeList.add(str);
+				dataMap.put(str, seq);
+				seq++;
+				m = new HashMap(10, 1F);
+				m.put("seq", seq);
+				m.put(SkuMaster.COLUMN_BAR_CODE, str);
+				m.put(PosTable.COLUMN_SKU_CD, sl[DatabaseHelper.getColumnIndex(SkuMaster.COLUMN_SKU_CD, SkuMaster.COLUMNS)]);
+				m.put(PosTable.COLUMN_ITEM_NAME, sl[DatabaseHelper.getColumnIndex(SkuMaster.COLUMN_ITEM_NAME, SkuMaster.COLUMNS)]);
+				m.put(PosTable.COLUMN_QTY, 1);
+				m.put(SkuMaster.COLUMN_ITEM_CD, sl[DatabaseHelper.getColumnIndex(SkuMaster.COLUMN_ITEM_CD, SkuMaster.COLUMNS)]);
+				dataList.add(m);
+//				barcodeMap.put(str, m);
+//				barcodeList.add(str);
 			} else {
 				m.put(PosTable.COLUMN_QTY, (Integer) m.get(PosTable.COLUMN_QTY) + 1);
 			}
-			ListView detailView = ((ListView) this
-					.findViewById(R.id.detailListView));
-			List l = new ArrayList();
-			for (String b : barcodeList) {
-				l.add(barcodeMap.get(b));
-			}
-			SimpleAdapter listItemAdapter = new SimpleAdapter(
-					detailView.getContext(), l, R.layout.view_detail,
-					new String[] {SkuMaster.COLUMN_ITEM_NAME,  SkuMaster.COLUMN_SKU_CD,
-							SkuMaster.COLUMN_ITEM_CD,
-							"qty" }, new int[] {
-						R.id.itemNameTextView, R.id.skuCdTextView, R.id.itemCdTextView,
-							R.id.qtyTextView });
-			detailView.setAdapter(listItemAdapter);
-			countSubTotal(1);
+//			ListView detailView = ((ListView) this
+//					.findViewById(R.id.detailListView));
+//			List l = new ArrayList();
+//			for (String b : barcodeList) {
+//				l.add(barcodeMap.get(b));
+//			}
+//			SimpleAdapter listItemAdapter = new SimpleAdapter(
+//					detailView.getContext(), l, R.layout.view_detail,
+//					new String[] {SkuMaster.COLUMN_ITEM_NAME,  SkuMaster.COLUMN_SKU_CD,
+//							SkuMaster.COLUMN_ITEM_CD,
+//							"qty" }, new int[] {
+//						R.id.moneyTextView, R.id.priceTextView, R.id.subTextView,
+//							R.id.qtyTextView });
+//			detailView.setAdapter(listItemAdapter);
+			this.listItemAdapter.notifyDataSetChanged();
+			countSubTotal();
 		}
 		scanEditText.setText("");
 	}
 
 	//计算小计
-	private void countSubTotal(int qty)
+	private void countSubTotal()
 	{
 		TextView subTotalTextView = (TextView) this
 				.findViewById(R.id.subTotalTextView);
-		String s = subTotalTextView.getText().toString();
 		int q = 0;
-		if(s.length()>0)
+		for(Map m:dataList)
 		{
-			q = Integer.parseInt(s);
+			Integer qty = (Integer)m.get(PosTable.COLUMN_QTY);
+			if(qty!=null)
+			q += qty;
 		}
-		q+=qty;
 		subTotalTextView.setText(""+q);
 	}
 	//清空数据
@@ -574,13 +582,148 @@ public class ShopTransferActivity extends Activity {
 				new String[] { SkuMaster.COLUMN_SKU_CD,
 						SkuMaster.COLUMN_ITEM_CD,
 						SkuMaster.COLUMN_ITEM_NAME, "qty" }, new int[] {
-						R.id.skuCdTextView, R.id.itemCdTextView,
-						R.id.itemNameTextView, R.id.qtyTextView });
+						R.id.priceTextView, R.id.subTextView,
+						R.id.moneyTextView, R.id.qtyTextView });
 		detailView.setAdapter(listItemAdapter);
 
 		//默认日期
 		EditText orderDateET = ((EditText) this
 				.findViewById(R.id.transferDateEditText));
 		orderDateET.setText(this.sdf.format(new Date()));
+	}
+	
+	class ItemAdapter extends BaseAdapter {
+		private Context context;
+		private LayoutInflater inflater;
+
+		public ItemAdapter(Activity activity) {
+			this.context = activity;
+			inflater = LayoutInflater.from(context);
+		}
+
+		public int getItemViewType(int position) {
+			return position;
+		}
+
+		public long getItemId(int position) {
+			return position;
+		}
+
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return dataList.size();
+		}
+
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return dataList.get(arg0);
+		}
+
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
+			ViewHolder holder = null;
+			if (convertView == null) {
+				convertView = inflater.inflate(R.layout.view_detail,
+						parent, false);
+				holder = new ViewHolder();
+				holder.seqTextView = (TextView) convertView
+						.findViewById(R.id.seqTextView);
+				holder.skuCdTextView = (TextView) convertView
+						.findViewById(R.id.skuCdTextView);
+				holder.itemNameTextView = (TextView) convertView
+						.findViewById(R.id.itemNameTextView);
+				holder.itemCdTextView = (TextView) convertView
+						.findViewById(R.id.itemCdTextView);
+				holder.qtyTextView = (TextView) convertView
+						.findViewById(R.id.qtyTextView);
+				holder.linearLayout = (LinearLayout) convertView
+						.findViewById(R.id.layout_other);
+				holder.item_qty_layout = (LinearLayout) convertView
+						.findViewById(R.id.item_qty_layout);
+				holder.item_delete_layout = (LinearLayout) convertView
+						.findViewById(R.id.item_delete_layout);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			Map data = dataList.get(position);
+			holder.seqTextView.setText(data.get("seq").toString());
+			holder.skuCdTextView.setText(data
+					.get(SkuMaster.COLUMN_SKU_CD).toString());
+			holder.itemNameTextView.setText(data
+					.get(SkuMaster.COLUMN_ITEM_NAME).toString());
+			holder.itemCdTextView.setText(data.get(SkuMaster.COLUMN_ITEM_CD)
+					.toString());
+			holder.qtyTextView.setText(data.get("qty").toString());
+			if (position == currentPosition) {
+				holder.linearLayout.setVisibility(View.VISIBLE);
+				holder.item_qty_layout.setClickable(true);
+				holder.item_delete_layout.setClickable(true);
+				
+				// 数量调整
+				holder.item_qty_layout
+						.setOnClickListener(new OnClickListener() {
+
+							public void onClick(View v) {
+
+								InputDialog inputDialog = new InputDialog(
+										ShopTransferActivity.this);
+								inputDialog.setInt(true);
+								inputDialog.setTitle(R.string.messageQtyChange);
+								DisplayMetrics displayMetrics = new DisplayMetrics();
+								getWindowManager().getDefaultDisplay()
+										.getMetrics(displayMetrics);
+
+								if (inputDialog.showDialog(
+										displayMetrics.widthPixels,
+										displayMetrics.heightPixels)) {
+									String inputStr = inputDialog.getInputStr();
+									Map m = dataList.get(currentPosition);
+									m.put(PosTable.COLUMN_QTY, new Integer(inputStr));
+									listItemAdapter.notifyDataSetChanged();
+									countSubTotal();
+								}
+								currentPosition = -1;
+							}
+						});
+				
+				holder.item_delete_layout
+						.setOnClickListener(new OnClickListener() {
+
+							public void onClick(View v) {
+								dataList.remove(currentPosition);
+								dataMap.clear();
+								for (int i = 0; i < dataList.size(); i++) {
+									Map m = dataList.get(i);
+									m.put("seq", i+1);
+									dataMap.put((String) m
+											.get(SkuMaster.COLUMN_BAR_CODE),
+											i);
+								}
+								seq = dataList.size();
+								listItemAdapter.notifyDataSetChanged();
+								currentPosition = -1;
+								countSubTotal();
+							}
+						});
+			} else {
+				holder.linearLayout.setVisibility(View.GONE);
+				holder.item_qty_layout.setClickable(false);
+				holder.item_delete_layout.setClickable(false);
+			}
+
+			return convertView;
+		}
+
+		class ViewHolder {
+			public TextView seqTextView;
+			public TextView skuCdTextView;
+			public TextView itemNameTextView;
+			public TextView itemCdTextView;
+			public TextView qtyTextView;
+			public LinearLayout linearLayout;
+			public LinearLayout item_qty_layout;
+			public LinearLayout item_delete_layout;
+		}
 	}
 }

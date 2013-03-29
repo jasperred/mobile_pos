@@ -2,7 +2,6 @@ package com.netsdl.android.init.view;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -34,6 +33,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnDismissListener;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -88,6 +89,18 @@ public class Init {
 	public Map<String, String> infoPayment;
 	public Map<String, String> infoDevice;
 	public Map<String, String> infoCust;
+	private Handler handler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				showRemoteVersionInfo();
+				break;
+			case 1:
+				break;
+			}
+		};
+	};
 
 	public Init(InitActivity parent) {
 		this.parent = parent;
@@ -180,7 +193,7 @@ public class Init {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
-								endDay();
+										endDay();
 							}
 						});
 						builder.setNegativeButton("取消", new OnClickListener() {
@@ -234,65 +247,126 @@ public class Init {
 				"9", Util.getLocalDeviceId(parent) }, new String[] {
 				DeviceMaster.COLUMN_INIT_ID, DeviceMaster.COLUMN_DEVICE_ID });
 		if (objs != null) {
-			String ftpUrl = DatabaseHelper.getColumnValue(objs,
+			final String ftpUrl = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_13, DeviceMaster.COLUMNS)
 					.toString();
-			String ftpPath = DatabaseHelper.getColumnValue(objs,
+			final String ftpPath = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_14, DeviceMaster.COLUMNS)
 					.toString();
-			String ftpUser = DatabaseHelper.getColumnValue(objs,
+			final String ftpUser = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_15, DeviceMaster.COLUMNS)
 					.toString();
-			String ftpPassword = DatabaseHelper.getColumnValue(objs,
+			final String ftpPassword = DatabaseHelper.getColumnValue(objs,
 					DeviceMaster.COLUMN_FIELD_16, DeviceMaster.COLUMNS)
 					.toString();
 			// 将filepath下全部文件上传
-			String spath = filepath+File.separatorChar+"sale";
+			final String spath = filepath + File.separatorChar + "sale";
 			File[] saleUploadFiles = new File(spath).listFiles();
 			if (saleUploadFiles != null) {
-				for (File uf : saleUploadFiles) {
-					// 上传数据
-					boolean b = Util.ftpUpload(spath, uf.getName(), ftpUrl,
-							ftpPath, ftpUser, ftpPassword);
-					// 上传成功才备份
-					if (b) {
-						// 备份数据
-						bakup(spath, uf.getName());
-						// 删除生成的文件
-						uf.delete();
-					}
+				for (final File uf : saleUploadFiles) {
+					final Handler handler = new Handler() {
+
+						public void handleMessage(Message msg) {
+							switch (msg.what) {
+							case 0:
+								// 备份数据
+									bakup(spath, uf.getName());
+									// 删除生成的文件
+									uf.delete();
+								break;
+							case 1:
+								break;
+							}
+						};
+					};
+					new Thread(new Runnable() {
+
+						public void run() {
+
+							// 上传数据
+							boolean b = Util.ftpUpload(spath, uf.getName(), ftpUrl,
+									ftpPath, ftpUser, ftpPassword);
+							// 上传成功才备份
+							if (b) {
+								handler.sendEmptyMessage(0);
+							}
+							else
+								handler.sendEmptyMessage(1);
+						}
+					}).start();
+					
 				}
 			}
-			String rpath = filepath+File.separatorChar+"return";
+			final String rpath = filepath + File.separatorChar + "return";
 			File[] returnUploadFiles = new File(rpath).listFiles();
 			if (returnUploadFiles != null) {
-				for (File uf : returnUploadFiles) {
-					// 上传数据
-					boolean b = Util.ftpUpload(rpath, uf.getName(), ftpUrl,
-							ftpPath, ftpUser, ftpPassword);
-					// 上传成功才备份
-					if (b) {
-						// 备份数据
-						bakup(rpath, uf.getName());
-						// 删除生成的文件
-						uf.delete();
-					}
+				for (final File uf : returnUploadFiles) {
+					final Handler handler = new Handler() {
+
+						public void handleMessage(Message msg) {
+							switch (msg.what) {
+							case 0:
+								// 备份数据
+								bakup(rpath, uf.getName());
+								// 删除生成的文件
+								uf.delete();
+								break;
+							case 1:
+								break;
+							}
+						};
+					};
+					new Thread(new Runnable() {
+
+						public void run() {
+
+							// 上传数据
+							boolean b = Util.ftpUpload(rpath, uf.getName(), ftpUrl,
+									ftpPath, ftpUser, ftpPassword);
+							// 上传成功才备份
+							if (b) {
+								handler.sendEmptyMessage(0);
+							}
+							else
+								handler.sendEmptyMessage(1);
+						}
+					}).start();
 				}
 			}
-			String tpath = filepath+File.separatorChar+"transfer";
+			final String tpath = filepath + File.separatorChar + "transfer";
 			File[] transferUploadFiles = new File(tpath).listFiles();
 			if (transferUploadFiles != null) {
-				for (File uf : transferUploadFiles) {
-					// 上传数据
-					boolean b = Util.ftpUpload(tpath, uf.getName(), ftpUrl,
-							ftpPath, ftpUser, ftpPassword);
-					// 上传成功才备份
-					if (b) {
-						// 备份数据
-						bakup(tpath, uf.getName());
-						// 删除生成的文件
-						uf.delete();
-					}
+				for (final File uf : transferUploadFiles) {
+					final Handler handler = new Handler() {
+
+						public void handleMessage(Message msg) {
+							switch (msg.what) {
+							case 0:
+								// 备份数据
+								bakup(tpath, uf.getName());
+								// 删除生成的文件
+								uf.delete();
+								break;
+							case 1:
+								break;
+							}
+						};
+					};
+					new Thread(new Runnable() {
+
+						public void run() {
+
+							// 上传数据
+							boolean b = Util.ftpUpload(tpath, uf.getName(), ftpUrl,
+									ftpPath, ftpUser, ftpPassword);
+							// 上传成功才备份
+							if (b) {
+								handler.sendEmptyMessage(0);
+							}
+							else
+								handler.sendEmptyMessage(1);
+						}
+					}).start();
 				}
 			}
 		}
@@ -363,7 +437,7 @@ public class Init {
 			if (whNo == null)
 				whNo = "";
 			String path = filepath + File.separatorChar + "sale";
-			String filename = whNo + "-sale-" +  timestamp+ "." +localDeviceId ;
+			String filename = whNo + "-sale-" + timestamp + "." + localDeviceId;
 			outputFile(path, saleList, filename);
 		}
 		// 退货到仓库的数据文件
@@ -375,7 +449,8 @@ public class Init {
 			if (whNo == null)
 				whNo = "";
 			String path = filepath + File.separatorChar + "return";
-			String filename = whNo + "-return-" + timestamp + "." + localDeviceId;
+			String filename = whNo + "-return-" + timestamp + "."
+					+ localDeviceId;
 			outputFile(path, returnList, filename);
 		}
 		// 店铺移动的数据文件
@@ -383,11 +458,13 @@ public class Init {
 		if (transferList != null) {
 
 			// 店铺号用第一条记录的店铺号
-			String whNo = (String) transferList.get(0).get(PosTable.COLUMN_WH_NO);
+			String whNo = (String) transferList.get(0).get(
+					PosTable.COLUMN_WH_NO);
 			if (whNo == null)
 				whNo = "";
 			String path = filepath + File.separatorChar + "transfer";
-			String filename = whNo + "-transfer-" +  timestamp+ "." + localDeviceId;
+			String filename = whNo + "-transfer-" + timestamp + "."
+					+ localDeviceId;
 			outputFile(path, transferList, filename);
 		}
 		// 盘点的数据文件
@@ -399,16 +476,16 @@ public class Init {
 				new String[] { PosTable.COLUMN_END_DAY });
 	}
 
-	//输出文件
+	// 输出文件
 	private void outputFile(String filepath, List<Map> dataList, String filename)
 			throws FileNotFoundException, UnsupportedEncodingException {
 		File path = new File(filepath);
-		if(!path.exists())
+		if (!path.exists())
 			path.mkdirs();
 		PrintStream output = null;
 		try {
-			output = new PrintStream(filepath + File.separatorChar
-					+ filename, Constant.UTF_8);
+			output = new PrintStream(filepath + File.separatorChar + filename,
+					Constant.UTF_8);
 			String[] columns = PosTable.COLUMNS;
 			for (Map d : dataList) {
 				for (int j = 0; j < columns.length; j++) {
@@ -426,20 +503,33 @@ public class Init {
 				output.println();
 				output.flush();
 			}
-		} finally{
-			if(output!=null)
+		} finally {
+			if (output != null)
 				output.close();
 		}
 	}
 
 	// 备份数据，并删除多余备份
-	private void bakup(String filepath, String filename)
-			throws IllegalArgumentException, SecurityException,
-			IllegalAccessException, NoSuchFieldException {
-		Object[] deviceMasterObjs = DatabaseHelper.getSingleColumn(
-				parent.getContentResolver(),
-				new Object[] { "9", Util.getLocalDeviceId(parent) },
-				DeviceMaster.class);
+	private void bakup(String filepath, String filename){
+		Object[] deviceMasterObjs = null;
+		try {
+			deviceMasterObjs = DatabaseHelper.getSingleColumn(
+					parent.getContentResolver(),
+					new Object[] { "9", Util.getLocalDeviceId(parent) },
+					DeviceMaster.class);
+		} catch (IllegalArgumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NoSuchFieldException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String bakpath = (String) DatabaseHelper.getColumnValue(
 				deviceMasterObjs, DeviceMaster.COLUMN_FIELD_02,
 				DeviceMaster.COLUMNS);
@@ -483,18 +573,19 @@ public class Init {
 			// 按日期和数量比较，大于bd的删除
 			Map<String, String> fm = new HashMap();
 			for (File f : fl) {
-				//得到文件的日期
+				// 得到文件的日期
 				String sn = null;
 				try {
-					sn = f.getName().substring(f.getName().lastIndexOf(".")+1 ,
-							f.getName().lastIndexOf(".") -1);
+					sn = f.getName().substring(
+							f.getName().lastIndexOf(".") + 1,
+							f.getName().lastIndexOf(".") - 1);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(sn==null||sn.length()<8)
+				if (sn == null || sn.length() < 8)
 					continue;
-				String d = sn.substring(0,8);
+				String d = sn.substring(0, 8);
 				if (fm.get(d) != null)
 					continue;
 				else {
@@ -648,14 +739,29 @@ public class Init {
 		((Button) parent.findViewById(R.id.buttonCheckDB))
 				.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						checkUpdate2();
+						try {
+							//清空版本信息
+							clearUpdateInfo();
+							//设置本地版本
+							setVersion();
+							new Thread(new Runnable() {
+
+								public void run() {
+
+									checkUpdate2();
+									handler.sendEmptyMessage(0);
+								}
+							}).start();
+						} catch (RuntimeException e) {
+							Toast.makeText(parent, e.getMessage(),
+									Toast.LENGTH_SHORT).show();
+						}
 					}
 				});
 	}
 
 	private void checkUpdate2() {
 		try {
-			clearUpdateInfo();
 			// String strLocalMacAddress =
 			// Util.getLocalMacAddress(parent);
 			// Log.d("LocalMacAddress",strLocalMacAddress);
@@ -665,58 +771,19 @@ public class Init {
 
 			initInfo = Util.getInitInfo();
 
-			if(initInfo.get(Init.KEY_SKU)!=null)
-			infoSku = Util.getInfo(initInfo.get(Init.KEY_SKU));
+			if (initInfo.get(Init.KEY_SKU) != null)
+				infoSku = Util.getInfo(initInfo.get(Init.KEY_SKU));
 
-			if(initInfo.get(Init.STORE)!=null)
-			infoStore = Util.getInfo(initInfo.get(Init.STORE));
+			if (initInfo.get(Init.STORE) != null)
+				infoStore = Util.getInfo(initInfo.get(Init.STORE));
 
-			if(initInfo.get(Init.PAYMENT)!=null)
-			infoPayment = Util.getInfo(initInfo.get(Init.PAYMENT));
+			if (initInfo.get(Init.PAYMENT) != null)
+				infoPayment = Util.getInfo(initInfo.get(Init.PAYMENT));
 
-			if(initInfo.get(Init.DEVICE)!=null)
-			infoDevice = Util.getInfo(initInfo.get(Init.DEVICE));
-			if(initInfo.get(Init.CUST)!=null)
-			infoCust = Util.getInfo(initInfo.get(Init.CUST));
-
-			if(infoSku!=null)
-			{
-			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
-					.setText(infoSku.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateCommodity))
-					.setEnabled(true);
-			}
-
-			if(infoStore!=null)
-			{
-			((TextView) parent.findViewById(R.id.StoreDataHostVersion))
-					.setText(infoStore.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateStore))
-					.setEnabled(true);
-			}
-
-			if(infoPayment!=null)
-			{
-			((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
-					.setText(infoPayment.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdatePayment))
-					.setEnabled(true);
-			}
-
-			if(infoDevice!=null)
-			{
-			((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
-					.setText(infoDevice.get(Constant.VERSION));
-			((Button) parent.findViewById(R.id.buttonUpdateDevice))
-					.setEnabled(true);
-			}
-			if(infoCust!=null)
-			{
-			((TextView) parent.findViewById(R.id.CustDataHostVersion))
-			.setText(infoCust.get(Constant.VERSION));
-		((Button) parent.findViewById(R.id.buttonUpdateCust))
-				.setEnabled(true);
-			}
+			if (initInfo.get(Init.DEVICE) != null)
+				infoDevice = Util.getInfo(initInfo.get(Init.DEVICE));
+			if (initInfo.get(Init.CUST) != null)
+				infoCust = Util.getInfo(initInfo.get(Init.CUST));
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -727,66 +794,7 @@ public class Init {
 		}
 	}
 
-	// 清空版本信息
-	private void clearUpdateInfo() {
-		initInfo.clear();
-		infoSku.clear();
-		infoStore.clear();
-		infoPayment.clear();
-		infoDevice.clear();
-		((TextView) parent.findViewById(R.id.CommodityDataLocalVersion))
-				.setText("");
-		((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
-				.setText("");
-		((Button) parent.findViewById(R.id.buttonUpdateCommodity))
-				.setEnabled(false);
-
-		((TextView) parent.findViewById(R.id.StoreDataLocalVersion))
-				.setText("");
-		((TextView) parent.findViewById(R.id.StoreDataHostVersion)).setText("");
-		((Button) parent.findViewById(R.id.buttonUpdateStore))
-				.setEnabled(false);
-
-		((TextView) parent.findViewById(R.id.PaymentDataLocalVersion))
-				.setText("");
-		((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
-				.setText("");
-		((Button) parent.findViewById(R.id.buttonUpdatePayment))
-				.setEnabled(false);
-
-		((TextView) parent.findViewById(R.id.DeviceDataLocalVersion))
-				.setText("");
-		((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
-				.setText("");
-		((Button) parent.findViewById(R.id.buttonUpdateDevice))
-				.setEnabled(false);
-	}
-
-	private void checkUpdate() {
-		clearUpdateInfo();
-		setVersion();
-		// 通过Config配置得到店铺数据的更新位置URL
-		String url = ConfigProperties.getProperties("pos.config.url");
-		if (url == null || url.trim().length() == 0) {
-			Toast.makeText(parent, R.string.configUrlNoFind, Toast.LENGTH_SHORT)
-					.show();
-			return;
-		}
-		// URL下固定路径，得到device_update.txt、payment_update.txt、sku_update.txt、store_update.txt配置信息
-		Map<String, String> remoteInfo = getUpdateConfigUrl(url);
-		if (remoteInfo == null)
-			return;
-		// 配置文件中包含更新地址、版本和记录数
-		try {
-			chekcSkuUpdate(remoteInfo.get("SkuUpdateUrl"));
-			infoStore = getDataConfig(remoteInfo.get("StoreUpdateUrl"));
-			infoPayment = getDataConfig(remoteInfo.get("PaymentUpdateUrl"));
-			infoDevice = getDataConfig(remoteInfo.get("DeviceUpdateUrl"));
-			infoCust = getDataConfig(remoteInfo.get("CustUpdateUrl"));
-		} catch (RuntimeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private void showRemoteVersionInfo() {
 		if (infoSku.get(Constant.VERSION) == null) {
 			((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
 					.setText(R.string.updateError);
@@ -845,6 +853,69 @@ public class Init {
 			((Button) parent.findViewById(R.id.buttonUpdateCust))
 					.setEnabled(true);
 		}
+	}
+
+	// 清空版本信息
+	private void clearUpdateInfo() {
+		initInfo.clear();
+		infoSku.clear();
+		infoStore.clear();
+		infoPayment.clear();
+		infoDevice.clear();
+		((TextView) parent.findViewById(R.id.CommodityDataLocalVersion))
+				.setText("");
+		((TextView) parent.findViewById(R.id.CommodityDataHostVersion))
+				.setText("");
+		((Button) parent.findViewById(R.id.buttonUpdateCommodity))
+				.setEnabled(false);
+
+		((TextView) parent.findViewById(R.id.StoreDataLocalVersion))
+				.setText("");
+		((TextView) parent.findViewById(R.id.StoreDataHostVersion)).setText("");
+		((Button) parent.findViewById(R.id.buttonUpdateStore))
+				.setEnabled(false);
+
+		((TextView) parent.findViewById(R.id.PaymentDataLocalVersion))
+				.setText("");
+		((TextView) parent.findViewById(R.id.PaymentDataHostVersion))
+				.setText("");
+		((Button) parent.findViewById(R.id.buttonUpdatePayment))
+				.setEnabled(false);
+
+		((TextView) parent.findViewById(R.id.DeviceDataLocalVersion))
+				.setText("");
+		((TextView) parent.findViewById(R.id.DeviceDataHostVersion))
+				.setText("");
+		((Button) parent.findViewById(R.id.buttonUpdateDevice))
+				.setEnabled(false);
+	}
+
+	private void checkUpdate() {
+		// clearUpdateInfo();
+		// setVersion();
+		// 通过Config配置得到店铺数据的更新位置URL
+		String url = ConfigProperties.getProperties("pos.config.url");
+		if (url == null || url.trim().length() == 0) {
+			Toast.makeText(parent, R.string.configUrlNoFind, Toast.LENGTH_SHORT)
+					.show();
+			return;
+		}
+		// URL下固定路径，得到device_update.txt、payment_update.txt、sku_update.txt、store_update.txt配置信息
+		Map<String, String> remoteInfo = getUpdateConfigUrl(url);
+		if (remoteInfo == null)
+			return;
+		// 配置文件中包含更新地址、版本和记录数
+		try {
+			chekcSkuUpdate(remoteInfo.get("SkuUpdateUrl"));
+			infoStore = getDataConfig(remoteInfo.get("StoreUpdateUrl"));
+			infoPayment = getDataConfig(remoteInfo.get("PaymentUpdateUrl"));
+			infoDevice = getDataConfig(remoteInfo.get("DeviceUpdateUrl"));
+			infoCust = getDataConfig(remoteInfo.get("CustUpdateUrl"));
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	// 得到配置文件地址

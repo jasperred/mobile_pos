@@ -1,0 +1,18 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:buttonStyle">@style/Button</item>
+    </style>
+
+    <style name="Button" parent="@android:style/Widget.Button">
+
+        <!-- 水平、垂直居中 -->
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <!-- 字体颜色 -->
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+</resources>

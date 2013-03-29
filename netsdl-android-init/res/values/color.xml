@@ -14,5 +14,6 @@
     <drawable name="maroon">#800000</drawable>
     <drawable name="dark_slate_blue">#483D8B</drawable>
     <drawable name="crimson">#DC143C</drawable>
+    <drawable name="light_gray">#a1a3a6</drawable>
     
 </resources>

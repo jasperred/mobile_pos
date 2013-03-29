@@ -54,13 +54,12 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:orientation="vertical" >
-
+
                 <Button
                     android:id="@+id/buttonType3"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:text="@string/returnToWh" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -68,13 +67,12 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:orientation="vertical" >
-
+
                 <Button
                     android:id="@+id/buttonType4"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:text="@string/transfer" />
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -90,13 +88,12 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:orientation="vertical" >
-
+
             <Button
                 android:id="@+id/searchFunctionButton"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="@string/function2" />
-
         </LinearLayout>
 
         <LinearLayout

@@ -28,6 +28,9 @@ public class Constant {
 	public static final String CUST_WH = "WH";//Cust的仓库分类
 	public static final String CUST_ST = "ST";//Cust的店铺分类
 	public static final String CUST_TYPE = "CUST";//CustMaster中的客户类型
+	
+	public static final String SHOP_ROLE_MANAGER = "M";//店铺角色-店主
+	public static final String SHOP_ROLE_EMPLOYEE= "E";//店铺角色-店员
 
 	
 }

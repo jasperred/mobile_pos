@@ -2,7 +2,8 @@
 <resources>
 
     <string name="hello">Hello World, NetSDLActivity!</string>
-    <string name="app_name">NetSDL AMI Smart POS 初期化</string>
+    <string name="app_name">POS初期化</string>
+    <string name="init_name">NetSDL AMI Smart POS---初期化</string>
     <string name="menu_settings">Settings</string>
     <string name="blank"></string>
     <string name="operaterID">用户编号输入</string>

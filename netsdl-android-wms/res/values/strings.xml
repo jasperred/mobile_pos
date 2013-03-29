@@ -1,0 +1,57 @@
+<resources>
+
+    <string name="app_name">NetSDL AMI Smart WMS</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">仓库管理</string>
+    <string name="login_title">登录</string>
+    <string name="login_pj_no">PJ</string>
+    <string name="login_user_no">用户</string>
+    <string name="login_password">密码</string>
+    <string name="login_cancel">取消</string>
+    <string name="login">登录</string>
+    <string name="module_title">功能区</string>
+    <string name="logout">退出</string>
+    <string name="init">数据管理</string>
+    <string name="refund">退货扫描</string>
+    <string name="confirm">确认</string>
+    <string name="back">返回</string>
+    <string name="refund_date">退货日期</string>
+    <string name="cust">客户</string>
+    <string name="refund_title">退货</string>
+    <string name="scan">扫描</string>
+    <string name="pjNoMessage">PJ必须填写</string>
+    <string name="userNoMessage">用户名必须填写</string>
+    <string name="passwordMessage">密码必须填写</string>
+    <string name="inventoryType">库存类型</string>
+    <string name="checkDb">数据检查</string>
+    <string name="localVersion">本地版本</string>
+    <string name="remoteVersion">远程版本</string>
+    <string name="userMaster">用户数据</string>
+    <string name="download">下载</string>
+    <string name="skuMaster">商品数据</string>
+    <string name="custMaster">客户数据</string>
+    <string name="dataUpload">数据上传</string>
+    <string name="configUrlNoFind">服务地址没有配置</string>
+    <string name="updateError">无更新消息</string>
+    <string name="Loading">下载中...</string>
+    <string name="Uploading">数据上传中...</string>
+    <string name="waiting">请稍等...</string>
+    <string name="message">消息</string>
+    <string name="in">入库扫描</string>
+    <string name="out">出库扫描</string>
+    <string name="otherIn">其它出库</string>
+    <string name="messageNoSku">没有找到此商品</string>
+    <string name="messageNoScan">请扫描商品</string>
+    <string name="messageNoWh">无仓库信息，请下载设备数据</string>
+    <string name="messageNoLogin">还没有登录</string>
+    <string name="messageFail">操作失败</string>
+    <string name="messageNoUpload">没有需要上传的数据</string>
+    <string name="deviceMaster">设备数据</string>
+    <string name="deviceInfo">设备信息</string>
+    <string name="deviceId">设备ID</string>
+    <string name="deviceIp">设备IP</string>
+    <string name="deviceMac">设备MAC</string>
+    <string name="deviceDirectory">程序目录</string>
+
+</resources>
