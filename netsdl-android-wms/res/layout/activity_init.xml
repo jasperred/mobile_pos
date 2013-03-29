@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/black_image"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/init"
+        android:textColor="@drawable/white"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/checkDbButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/checkDb"
+        android:textColor="@drawable/white"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text=""
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/localVersionTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="@string/localVersion"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/remoteVersionTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="@string/remoteVersion"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text=""
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/userMasterTextView"
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:text="@string/userMaster"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/userMasterLocalVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/userMasterRemoteVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/userMasterDownloadButton"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:text="@string/download"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/skuMasterTextView"
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:text="@string/skuMaster"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/skuMasterLocalVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/skuMasterRemoteVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/skuMasterDownloadButton"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:text="@string/download"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/custMasterTextView"
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:text="@string/custMaster"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/custMasterLocalVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/custMasterRemoteVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/custMasterDownloadButton"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:text="@string/download"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/deviceMasterTextView"
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:text="@string/deviceMaster"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/deviceMasterLocalVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/deviceMasterRemoteVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/deviceMasterDownloadButton"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:text="@string/download"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dataUploadButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/dataUpload"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/buttonDeviceInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/deviceInfo"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/back"
+            android:textColor="@drawable/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+</LinearLayout>
