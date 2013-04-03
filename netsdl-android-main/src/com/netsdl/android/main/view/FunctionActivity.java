@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import com.netsdl.android.main.R;
 import com.netsdl.android.main.view.manage.ReturnToWhActivity;
+import com.netsdl.android.main.view.manage.ShopCheckActivity;
+import com.netsdl.android.main.view.manage.ShopCheckUploadActivity;
 import com.netsdl.android.main.view.manage.ShopTransferActivity;
 import com.netsdl.android.main.view.sale.SaleActivity;
 import com.netsdl.android.main.view.sale.SaleReturnActivity;
@@ -123,13 +125,6 @@ public class FunctionActivity extends Activity {
 			}
 		});
 
-		// 销售
-		((Button) this.findViewById(R.id.buttonType1))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						toSale();
-					}
-				});
 		// 销售退货
 		((Button) this.findViewById(R.id.buttonType2))
 				.setOnClickListener(new OnClickListener() {
@@ -162,6 +157,20 @@ public class FunctionActivity extends Activity {
 					}
 
 				});
+		// 盘点
+		((Button) this.findViewById(R.id.checkButton))
+				.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						toCheck();
+					}
+				});
+		// 盘点上传
+		((Button) this.findViewById(R.id.checkUploadButton))
+				.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						toCheckUpload();
+					}
+				});
 	}
 
 	// 转向登录页面
@@ -173,12 +182,6 @@ public class FunctionActivity extends Activity {
 		FunctionActivity.this.startActivity(gotoIntent);
 	}
 
-	// 转向销售页面
-	private void toSale() {
-		Intent gotoIntent = new Intent(FunctionActivity.this,
-				SaleActivity.class);
-		FunctionActivity.this.startActivity(gotoIntent);
-	}
 
 	// 转向销售退货页面
 	private void toSaleReturn() {
@@ -216,5 +219,17 @@ public class FunctionActivity extends Activity {
 		//
 		// gotoIntent.putExtras(bundle);
 		// FunctionActivity.this.startActivity(gotoIntent);
+	}
+	// 转向盘点页面
+	private void toCheck() {
+		Intent gotoIntent = new Intent(FunctionActivity.this,
+				ShopCheckActivity.class);
+		FunctionActivity.this.startActivity(gotoIntent);
+	}
+	// 转向盘点上传页面
+	private void toCheckUpload() {
+		Intent gotoIntent = new Intent(FunctionActivity.this,
+				ShopCheckUploadActivity.class);
+		FunctionActivity.this.startActivity(gotoIntent);
 	}
 }

@@ -11,7 +11,6 @@
         android:layout_height="fill_parent"
         android:layout_weight="2.5"
         android:orientation="vertical" >
-
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +52,6 @@
                     android:gravity="left"
                     android:singleLine="true"
                     android:textColorHint="@drawable/black" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -77,7 +75,6 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPassword" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -100,7 +97,6 @@
                     android:gravity="center_vertical|start"
                     android:textOff="@string/saleBusiness"
                     android:textOn="@string/otherBusiness" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -115,132 +111,128 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/login" />
-
             </LinearLayout>
-
         </LinearLayout>
 
-        <TableLayout
-            android:id="@+id/TableLayout1"
+        <LinearLayout
+            android:id="@+id/LinearLayout2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="6"
-            android:shrinkColumns="2"
-            android:stretchColumns="3" >
+            android:orientation="vertical" >
 
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
                 <Button
                     android:id="@+id/button7"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n7" />
 
                 <Button
                     android:id="@+id/button8"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n8" />
 
                 <Button
                     android:id="@+id/button9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n9" />
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
                 <Button
-                    android:id="@+id/button4"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/deleteCheckFileButton"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n4" />
 
                 <Button
                     android:id="@+id/button5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n5" />
 
                 <Button
                     android:id="@+id/button6"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n6" />
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
                 <Button
-                    android:id="@+id/button1"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/refreshButton"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n1" />
 
                 <Button
-                    android:id="@+id/button2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/uploadCheckFileButton"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n2" />
 
                 <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/uploadAllCheckFileButton"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n3" />
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
                 <Button
                     android:id="@+id/buttonClear"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/clear" />
 
                 <Button
                     android:id="@+id/button0"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/n0" />
 
                 <Button
                     android:id="@+id/buttonReturn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:text="@string/returnn" />
-            </TableRow>
-        </TableLayout>
-
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -248,7 +240,6 @@
         android:layout_height="fill_parent"
         android:layout_weight="2.5"
         android:orientation="vertical" >
-
     </LinearLayout>
 
 </LinearLayout>

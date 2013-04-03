@@ -161,8 +161,8 @@ public class SaleReturnActivity extends Activity implements
 		if (msTextView == null)
 			msTextView = (TextView) this.findViewById(R.id.saleMassageTextView);
 		// 初始化数字按钮
-		int[] buttons = new int[] { R.id.button0, R.id.button1, R.id.button2,
-				R.id.button3, R.id.button4, R.id.button5, R.id.button6,
+		int[] buttons = new int[] { R.id.button0, R.id.checkUploadButton, R.id.uploadCheckFileButton,
+				R.id.uploadAllCheckFileButton, R.id.deleteCheckFileButton, R.id.button5, R.id.button6,
 				R.id.button7, R.id.button8, R.id.button9 };
 		int c = 0;
 		for (int i : buttons) {
@@ -274,7 +274,7 @@ public class SaleReturnActivity extends Activity implements
 		localShopName = FunctionActivity.localShopName;
 		localShopCode = FunctionActivity.localShopCode;
 		if (userName != null)
-			((TextView) this.findViewById(R.id.salemanTextView))
+			((TextView) this.findViewById(R.id.checkTypeTextView))
 					.setText(userName);
 		if (localShopName != null)
 			((TextView) this.findViewById(R.id.shopNameTextView))

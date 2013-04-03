@@ -10,6 +10,7 @@
     <string name="return_to_wh_title">NetSDL AMI Smart POS---返品</string>
     <string name="transfer_title">NetSDL AMI Smart POS---移动</string>
     <string name="check_title">NetSDL AMI Smart POS---盘点</string>
+    <string name="check_upload_title">NetSDL AMI Smart POS---盘点上传</string>
     <string name="blank"></string>
     <string name="loginOperate">操作员登录</string>
     <string name="operaterID">用户编号输入</string>
@@ -27,8 +28,8 @@
     <string name="n9">９</string>
     <string name="point">.</string>
     <string name="back">←</string>
-    <string name="clear">Ｃ</string>
-    <string name="returnn">┘</string>
+    <string name="clear">清除</string>
+    <string name="returnn">确认</string>
     <string name="Change">找零</string>
     <string name="Total">Total</string>
     <string name="Price">单价</string>
@@ -124,6 +125,19 @@
     <string name="messageDiscountChange">折扣调整</string>
     <string name="check">盘点</string>
     <string name="itemCd">商品编码</string>
-
-    
+    <string name="checkUpload">盘点上传</string>
+    <string name="checkType">盘点类型</string>
+    <string name="checkDate">盘点日期</string>
+    <string name="checkNo">盘点单号</string>
+    <string name="barcode">条码</string>
+    <string name="messageNoCheckNo">请输入盘点单号</string>
+    <string name="messageNewCheck">新盘点单</string>
+    <string name="messageNoData">无数据</string>
+    <string name="newCheckFile">生成盘点文件</string>
+    <string name="refresh">刷新</string>
+    <string name="uploadFile">上传文件</string>
+    <string name="uploadAllFile">上传全部文件</string>
+    <string name="deleteFile">删除文件</string>
+    <string name="fileName">文件名称</string>    
+    <string name="fileSize">文件大小</string>    
 </resources>

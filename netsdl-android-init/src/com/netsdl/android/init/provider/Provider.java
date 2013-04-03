@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.netsdl.android.common.Constant;
+import com.netsdl.android.common.db.CheckOrderTable;
 import com.netsdl.android.common.db.CustMaster;
 import com.netsdl.android.common.db.DatabaseHandler;
 import com.netsdl.android.common.db.DeviceMaster;
@@ -24,7 +25,7 @@ public class Provider extends ContentProvider {
 
 	private static final Class<?>[] clazzes = new Class<?>[] {
 			StoreMaster.class, PaymentMaster.class, SkuMaster.class,
-			PosTable.class, DeviceMaster.class, CustMaster.class  };
+			PosTable.class, DeviceMaster.class, CustMaster.class,CheckOrderTable.class };
 	private static final UriMatcher URI_MATCHER = new UriMatcher(
 			UriMatcher.NO_MATCH);
 
@@ -128,7 +129,24 @@ public class Provider extends ContentProvider {
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		// TODO Auto-generated method stub
+		String type = getType(uri);
+		if (type == null)
+			return 0;
+		Field[] fields = data.getClass().getFields();
+		for (Field field : fields) {
+			if (type.equals(field.getType().getName())) {
+				try {
+					DatabaseHandler databaseHandler = (DatabaseHandler) field
+							.get(data);
+					SQLiteDatabase db = databaseHandler.getWritableDatabase();
+					int r = db.delete(databaseHandler.getTableName(), selection, selectionArgs);
+					return r;
+				} catch (IllegalArgumentException e) {
+				} catch (IllegalAccessException e) {
+				}
+			}
+
+		}
 		return 0;
 	}
 

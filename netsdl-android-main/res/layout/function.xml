@@ -23,7 +23,7 @@
                 android:orientation="vertical" >
 
                 <Button
-                    android:id="@+id/buttonType1"
+                    android:id="@+id/checkButton"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:text="@string/type1" />

@@ -256,7 +256,7 @@
                         android:orientation="horizontal" >
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/deleteCheckFileButton"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
@@ -304,14 +304,14 @@
                             android:orientation="horizontal" >
 
                             <Button
-                                android:id="@+id/button1"
+                                android:id="@+id/checkUploadButton"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
                                 android:layout_weight="1"
                                 android:text="@string/n1" />
 
                             <Button
-                                android:id="@+id/button2"
+                                android:id="@+id/uploadCheckFileButton"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
                                 android:layout_weight="1"
@@ -346,7 +346,7 @@
                             android:orientation="vertical" >
 
                             <Button
-                                android:id="@+id/button3"
+                                android:id="@+id/uploadAllCheckFileButton"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
                                 android:layout_weight="1"
