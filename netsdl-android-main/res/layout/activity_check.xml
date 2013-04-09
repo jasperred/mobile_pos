@@ -101,7 +101,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:editable="true" />
+                    android:editable="true"
+                    android:enabled="false" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -110,36 +112,40 @@
                 android:layout_weight="1" >
 
                 <TextView
-                    android:id="@+id/saleDateTextView"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="3"
-                    android:text="@string/transferToShop" />
-
-                <Spinner
-                    android:id="@+id/transferToShopSpinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" >
-
-                <TextView
-                    android:id="@+id/saleDateTextView"
+                    android:id="@+id/salemanTextView"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="3"
                     android:text="@string/operator" />
 
-                <Spinner
-                    android:id="@+id/operatorSpinner"
+                <EditText
+                    android:id="@+id/operatorNameEditText"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:enabled="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3"
+                    android:text="@string/checkNo" />
+
+                <EditText
+                    android:id="@+id/checkNoEditText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:ems="10" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -152,10 +158,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="3"
-                    android:text="@string/transferDate" />
+                    android:text="@string/checkDate" />
 
                 <EditText
-                    android:id="@+id/transferDateEditText"
+                    android:id="@+id/checkDateEditText"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1" />
@@ -164,21 +170,44 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1" >
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/backButton"
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:text="@string/Return" />
+                    android:orientation="horizontal" >
 
-                <Button
-                    android:id="@+id/confirmButton"
+                    <Button
+                        android:id="@+id/backButton"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:text="@string/clear" />
+
+                    <Button
+                        android:id="@+id/confirmButton"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:text="@string/Confirm" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:text="@string/Confirm" />
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:id="@+id/newCheckFileButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/newCheckFile" />
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

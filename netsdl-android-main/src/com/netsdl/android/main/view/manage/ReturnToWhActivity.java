@@ -575,16 +575,12 @@ OnItemLongClickListener {
 			barcodeMap.clear();
 		if(barcodeList!=null)
 			barcodeList.clear();
-		ListView detailView = ((ListView) this
-				.findViewById(R.id.detailListView));
-		SimpleAdapter listItemAdapter = new SimpleAdapter(
-				detailView.getContext(), new ArrayList(), R.layout.view_detail,
-				new String[] { SkuMaster.COLUMN_SKU_CD,
-						SkuMaster.COLUMN_ITEM_CD,
-						SkuMaster.COLUMN_ITEM_NAME, "qty" }, new int[] {
-						R.id.priceTextView, R.id.subTextView,
-						R.id.moneyTextView, R.id.qtyTextView });
-		detailView.setAdapter(listItemAdapter);
+
+		if (dataList != null)
+			dataList.clear();
+		if (dataMap != null)
+			dataMap.clear();
+		this.listItemAdapter.notifyDataSetChanged();
 
 		//默认日期
 		EditText orderDateET = ((EditText) this

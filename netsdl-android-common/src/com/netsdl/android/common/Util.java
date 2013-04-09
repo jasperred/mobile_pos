@@ -311,8 +311,10 @@ public class Util {
 			ftpClient.logout();
 			return true;
 		} catch (SocketException e) {
+			Log.e("ftp", e.getMessage());
 			return false;
 		} catch (IOException e) {
+			Log.e("ftp", e.getMessage());
 			return false;
 		} finally {
 			if (input != null) {

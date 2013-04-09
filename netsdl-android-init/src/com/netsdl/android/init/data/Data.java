@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.content.Context;
 
+import com.netsdl.android.common.db.CheckOrderTable;
 import com.netsdl.android.common.db.CustMaster;
 import com.netsdl.android.common.db.DbMaster;
 import com.netsdl.android.common.db.DeviceMaster;
@@ -37,6 +38,8 @@ public class Data {
 	public CustMaster custMaster = null;
 
 	public PosTable posTable = null;
+	
+	public CheckOrderTable checkOrderTable = null;
 
 	private Data(Context context) {
 		this.context = context;
@@ -51,6 +54,7 @@ public class Data {
 		deviceMaster = new DeviceMaster(context);
 		custMaster = new CustMaster(context);
 		posTable = new PosTable(context);
+		checkOrderTable = new CheckOrderTable(context);
 	}
 
 	public static Data getInstance(Context context) {

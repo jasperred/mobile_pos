@@ -24,11 +24,11 @@ public class Function{
 	final FrameLayout coreLayout;
 	MainActivity parent;
 
-	int[] ids = new int[] { R.id.buttonType1, R.id.buttonType2,
+	int[] ids = new int[] { R.id.checkButton, R.id.buttonType2,
 			R.id.buttonType3,R.id.buttonType4, R.id.searchFunctionButton };
 	Type[] types = new Type[] { Type.type1, Type.type2, Type.type3 };
 
-	int currentID = R.id.buttonType1;
+	int currentID = R.id.checkButton;
 
 	public Function(MainActivity parent) {
 		this.parent = parent;
@@ -58,10 +58,10 @@ public class Function{
 		});
 		
 		//销售
-		((Button) parent.findViewById( R.id.buttonType1))
+		((Button) parent.findViewById( R.id.checkButton))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				currentID =  R.id.buttonType1;
+				currentID =  R.id.checkButton;
 				parent.type = types[getIndex(currentID)];
 				parent.preMain.init();
 			}

@@ -36,11 +36,10 @@
                 android:orientation="vertical" >
 
                 <Button
-                    android:id="@+id/buttonType1"
+                    android:id="@+id/searchFunctionButton"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:enabled="false"
-                    android:text="@string/check" />
+                    android:text="@string/function2" />
 
             </LinearLayout>
         </LinearLayout>
@@ -89,13 +88,22 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/searchFunctionButton"
+                android:id="@+id/checkButton"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="@string/function2" />
+                android:layout_weight="1"
+                android:text="@string/check" />
+
+            <Button
+                android:id="@+id/checkUploadButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="@string/checkUpload" />
+
         </LinearLayout>
 
         <LinearLayout

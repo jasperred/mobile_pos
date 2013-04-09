@@ -65,7 +65,7 @@ public final class R {
 		public static final int CommodityData = 0x7f04001f;
 	}
 	public static final class layout {
-		public static final int main = 0x7f030012;
+		public static final int main = 0x7f030014;
 	}
 	public static final class drawable {
 		public static final int ic_launcher = 0x7f020005;
